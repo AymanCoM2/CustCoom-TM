@@ -33,9 +33,9 @@
     @endif
 
     <div class="alert alert-danger">
-        <a href="{{ route('get-customer-form-g', $cardCode) }}" id="iframeLink_x">Before -Approve (Original)</a>
+        <a href="{{ route('get-customer-form-g', $cardCode) }}" id="iframeLink_x">تحميل بينات العميل المسجلة حاليا</a>
         <br>
-        <a href="{{ route('get-customer-form-g-what-if', $cardCode) }}" id="iframeLink_y">After -Approve (What if)</a>
+        <a href="{{ route('get-customer-form-g-what-if', $cardCode) }}" id="iframeLink_y">تحميل بيانات العميل في حالة الموافقة على التعديلات</a>
     </div>
 
     <div id="myModal" class="modal">
