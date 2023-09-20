@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\FormGroupingRequest;
 use App\Models\CardCode;
+use App\Models\ComLog;
 use App\Models\Customers;
 use App\Models\EditHistory;
 use Exception;
@@ -23,8 +24,6 @@ class CustomersController extends Controller
         $sap_Query = "
         SELECT * from TM_CustomerData
         ";
-        // WHERE R.CARDCODE = 'R0001' << After From R to get the DATA from 
-        // the Sap to Filter For One User
 
         if ($request->ajax()) {
             $osInfo = php_uname();
@@ -200,6 +199,20 @@ class CustomersController extends Controller
 
     public function handleCustomersForm(FormGroupingRequest $request)
     {
+        $filteredFields = array_filter($request->all());
+        foreach ($filteredFields as $key => $value) {
+            if ($key == 'id' || $key == '_token' || $key == 'CardCode') {
+                // DO NOTTHING  ; 
+            } else {
+                $oneLog  = new ComLog();
+                $oneLog->user_id  = request()->user()->id;
+                $oneLog->userCardCode = $filteredFields['CardCode'];
+                $oneLog->field_name = $key;
+                $oneLog->entered_value = $value;
+                $oneLog->save();
+            }
+        }
+
         if ($request->user()->isSuperUser == 1) {
             $updatedCustomer  = Customers::where('id', $request->id)->first();
             $updatedCustomer->update($request->all());
