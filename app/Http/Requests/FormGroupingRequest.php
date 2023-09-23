@@ -25,15 +25,15 @@ class FormGroupingRequest extends FormRequest
             "CommLicense" => "required",
             "NationalAddrOrgImg" => "required",
             // GG 
-            "OwnerIDExpiryDate" => 'nullable',
+            // "OwnerIDExpiryDate" => 'nullable',
             // "required_if:anotherfield,value"
             // GG 
             "ObSupporterIdImg" =>  "required_if:OrderBond,موجود",
             "ObFrstSeeIdImg" => "required_if:OrderBond,موجود",
             "ObScndSeeIdImg" => "required_if:OrderBond,موجود",
-            "ExpiryDateGuarantorPromissoryNote" =>  "required_if:ObSupporterIdImg,موجود",
-            "ExpirationDateFirstWitness" => "required_if:ObFrstSeeIdImg,موجود",
-            "ExpiryDateSecondWitness" => "required_if:ObScndSeeIdImg,موجود",
+            // "ExpiryDateGuarantorPromissoryNote" =>  "required_if:ObSupporterIdImg,موجود",
+            // "ExpirationDateFirstWitness" => "required_if:ObFrstSeeIdImg,موجود",
+            // "ExpiryDateSecondWitness" => "required_if:ObScndSeeIdImg,موجود",
             // GG 
             "ExpiryDateNationalAddress" => "required_if:NationalAddrOrgImg,موجود",
             "ExpiryDateNationalAddressReserveGuarantor" => "required_if:NationalAddrFirstSupOb,موجود",
@@ -55,7 +55,7 @@ class FormGroupingRequest extends FormRequest
     public function messages()
     {
         return [
-            'required' => ":attribute is required",
+            'required' => ":attribute مطلوب",
             'required_if' => ':attribute مطلوب في حالة وجود :other '
         ];
     }
@@ -67,7 +67,7 @@ class FormGroupingRequest extends FormRequest
             "CustomerType" => trans("CustomerType", [], 'ar'),
             "OpenAccountPropose" => trans("OpenAccountPropose", [], 'ar'),
             "CommercialRegister" => trans("CommercialRegister", [], 'ar'),
-            "CommLicense" => trans("CommLicense", [], 'ar'), // Added Also To the Data Here  
+            "CommLicense" => trans("CommLicense", [], 'ar'),
             "TaxCard" => trans("TaxCard", [], 'ar'),
             "OrderBond" => trans("OrderBond", [], 'ar'),
             "OwnerImg" => trans("OwnerImg", [], 'ar'),

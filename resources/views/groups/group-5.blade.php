@@ -59,6 +59,7 @@
 
         <div class="col-sm-4">
             <label for="" class="form-label bg-light fw-bold d-block"> {{ __('OwnerIDExpiryDate', [], 'ar') }}
+                <input type="checkbox" class="unified_check">
             </label>
             @php
                 $uxDate = strtotime($customerMySqlData->OwnerIDExpiryDate);
@@ -196,7 +197,9 @@
 
         <div class="sanad-g col-sm-4">
             <label for="" class="form-label bg-light fw-bold d-block">
-                {{ __('ExpiryDateGuarantorPromissoryNote', [], 'ar') }} </label>
+                {{ __('ExpiryDateGuarantorPromissoryNote', [], 'ar') }}
+                <input type="checkbox" class="unified_check">
+            </label>
             @php
                 $uxDate = strtotime($customerMySqlData->ExpiryDateGuarantorPromissoryNote);
                 $formatted = date('d-m-Y', $uxDate);
@@ -337,6 +340,7 @@
         <div class="sanad-g col-sm-4">
             <label for="" class="form-label bg-light fw-bold d-block">
                 {{ __('ExpirationDateFirstWitness', [], 'ar') }}
+                <input type="checkbox" class="unified_check">
             </label>
             @php
                 $uxDate = strtotime($customerMySqlData->ExpirationDateFirstWitness);
@@ -411,6 +415,7 @@
                 }
             @endphp</p>
         </div>
+
         {{-- 10 --}}
         <div
             class="sanad-g col-sm-4 {{ $errors->has('ObScndSeeIdImg') && old('OrderBond') == 'موجود' ? 'border border-danger' : '' }}">
@@ -473,7 +478,9 @@
 
         <div class="sanad-g col-sm-4">
             <label for="" class="form-label bg-light fw-bold d-block">
-                {{ __('ExpiryDateSecondWitness', [], 'ar') }} </label>
+                {{ __('ExpiryDateSecondWitness', [], 'ar') }}
+                <input type="checkbox" class="unified_check">
+            </label>
             @php
                 $uxDate = strtotime($customerMySqlData->ExpiryDateSecondWitness);
                 $formatted = date('d-m-Y', $uxDate);
