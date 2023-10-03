@@ -76,7 +76,7 @@
                         <a href="{{ route('customer-edit-log') }}">
                             <span class="text nav-text">
                                 <span
-                                    class="badge bg-danger">{{ \DB::select(
+                                    class="badge bg-danger">{{ \Illuminate\Support\Facades\DB::select(
                                         \DB::raw("
                                                                         SELECT COUNT(DISTINCT cardCode) as count
                                                                         FROM edit_histories
