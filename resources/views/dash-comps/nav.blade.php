@@ -76,7 +76,13 @@
                         <a href="{{ route('customer-edit-log') }}">
                             <span class="text nav-text">
                                 <span
-                                    class="badge bg-danger">{{ \App\Models\EditHistory::where('isApproved', 0)->pluck('cardCode')->unique()->count()}}</span>
+                                    class="badge bg-danger">{{ \DB::select(
+                                        \DB::raw("
+                                                                        SELECT COUNT(DISTINCT cardCode) as count
+                                                                        FROM edit_histories
+                                                                        WHERE isApproved = 0
+                                                                    "),
+                                    )[0]->count }}</span>
                                 Newly updated Customers</span>
                         </a>
                     </li>
