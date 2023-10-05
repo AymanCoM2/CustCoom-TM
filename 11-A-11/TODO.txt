@@ -1,7 +1,0 @@
-When approve ALL ,Remove that it is NOT approved 
-SO that it is Not affecting the Nav Link 
-
-The Floating Button 
-----------------Record Here What you Did to Do On the Other Project--------------
-
-    - Once He Clicks It , It shows Last DIsapproved Items 
