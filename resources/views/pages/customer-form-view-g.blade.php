@@ -26,7 +26,7 @@
     <link href="{{ asset('css/bootstrap5.css') }}" rel="stylesheet" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cairo&display=swap" rel="stylesheet">
- 
+    <link rel="stylesheet" href="{{ asset('css/fab.css') }}">
     <title>Customer Form Grouping</title>
 </head>
 
@@ -91,7 +91,7 @@
         <input type="hidden" name="created_at" value="">
         <input type="hidden" name="updated_at" value="">
 
-       
+
 
         @include('layouts.sep', ['variableName' => 'مجموعة -  1'])
         @include('groups.group-1')
@@ -126,8 +126,7 @@
 
         @if (Auth::user()->isSuperUser == 2)
             <div class="d-flex justify-content-center">
-                <input type="submit" name="submit" id="" value="Submit"
-                    class="form-group btn btn-danger">
+                <input type="submit" name="submit" id="" value="Submit" class="form-group btn btn-danger">
             </div>
         @endif
         <br>
