@@ -18,7 +18,7 @@ Route::get('/history-log', function () {
 
 
 Route::get('/customer-edit-log', function () {
-    $allHistory = EditHistory::where('isApproved',false)->orderBy('updated_at', 'desc')->paginate(12);
+    $allHistory = EditHistory::where('isApproved', false)->orderBy('updated_at', 'desc')->paginate(12);
     return view('pages.history-log', compact(['allHistory']));
 })->name('customer-edit-log');
 
