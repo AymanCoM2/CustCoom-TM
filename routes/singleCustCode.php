@@ -21,7 +21,7 @@ Route::post('/bbb', function (Request $request) {
     if (strcasecmp($firstWord, 'Windows') === 0) {
         $data = DB::connection('sqlsrv')->select($sap_Query);
     } else {
-        $data = "";
+        $data = [];
         $serverName = "10.10.10.100";
         $databaseName = "TM";
         $uid = "ayman";
