@@ -27,7 +27,7 @@ Route::post('/bbb', function (Request $request) {
         $pwd = "admin@1234";
         $options = [
             PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
-            PDO::SQLSRV_ATTR_FETCHES_NUMERIC_TYPE => true,
+            // PDO::SQLSRV_ATTR_FETCHES_NUMERIC_TYPE => true,
             "TrustServerCertificate" => true,
         ];
         $conn = new PDO("sqlsrv:server = $serverName; Database = $databaseName;", $uid, $pwd, $options);
@@ -37,6 +37,10 @@ Route::post('/bbb', function (Request $request) {
         }
     }
 
-    dd($data);
+    if ($data) {
+        dd($data);
+    } else {
+        dd("");
+    }
 })->name('bbb-post');
 // ==============================
