@@ -67,7 +67,6 @@ class ImportingController extends Controller
                 'NationalAddrOrgImg' => $collection[" صورة عن العنوان الوطني للمؤسسة"],
                 'NationalAddrFirstSupOb' => $collection[" صورة عن العنوان الوطني للضامن الاحتياطي في سند الامر"],
 
-                'COM' => $collection['COM']
                 // TM or LB 
             ]);
         }
