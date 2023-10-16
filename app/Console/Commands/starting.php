@@ -18,7 +18,7 @@ class starting extends Command
     {
         $adminUser = new User();
         $adminUser->name = 'admin';
-        $adminUser->email = 'admin@admin.com';
+        $adminUser->email = 'alshimaa.abdallah@2coom.com';
         $adminUser->password = Hash::make('123');
         $adminUser->isSuperUser = 1;
         $adminUser->email_verified_at = now();
@@ -26,8 +26,8 @@ class starting extends Command
         // 3 ->Viewer , 2->Editor , 1->Admin
 
         $editorUser = new User();
-        $editorUser->name = 'editor';
-        $editorUser->email = 'aymancoom3@gmail.com';
+        $editorUser->name = 'Abdelrahman';
+        $editorUser->email = 'abdelrahman.maged@2coom.com';
         $editorUser->password = Hash::make('123');
         $editorUser->isSuperUser = 2;
         $editorUser->email_verified_at = now();
@@ -36,8 +36,8 @@ class starting extends Command
 
 
         $editorUser2 = new User();
-        $editorUser2->name = 'editor';
-        $editorUser2->email = 'editor2@editor.com';
+        $editorUser2->name = 'Asmaa';
+        $editorUser2->email = 'as.yahiya.2coom@gmail.com';
         $editorUser2->password = Hash::make('123');
         $editorUser2->isSuperUser = 2;
         $editorUser2->email_verified_at = now();
@@ -46,8 +46,8 @@ class starting extends Command
 
 
         $viewerUser = new User();
-        $viewerUser->name = 'viewer';
-        $viewerUser->email = 'viewer1@viewer.com';
+        $viewerUser->name = 'Osama';
+        $viewerUser->email = 'osama.saad@2coom.com';
         $viewerUser->password = Hash::make('123');
         $viewerUser->isSuperUser = 3;
         $viewerUser->email_verified_at = now();
@@ -55,8 +55,8 @@ class starting extends Command
 
 
         $viewerUser2 = new User();
-        $viewerUser2->name = 'viewer';
-        $viewerUser2->email = 'viewer2@viewer.com';
+        $viewerUser2->name = 'Mahmoud';
+        $viewerUser2->email = 'mahmoud.saleh@2coom.com';
         $viewerUser2->password = Hash::make('123');
         $viewerUser2->isSuperUser = 3;
         $viewerUser2->email_verified_at = now();
