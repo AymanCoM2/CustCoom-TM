@@ -16,7 +16,6 @@ class starting extends Command
 
     public function handle()
     {
-        User::truncate();
         $adminUser = new User();
         $adminUser->name = 'admin';
         $adminUser->email = 'admin@admin.com';
