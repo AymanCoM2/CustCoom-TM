@@ -1,5 +1,0 @@
-wHEN new Edit history is stored ,,
-It will be Removed From the tempdisapprove & stored In Edit History 
-
-EITHER EditHistory || tempdisapprove
-
