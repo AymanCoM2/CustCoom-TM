@@ -9,7 +9,6 @@ use Illuminate\Support\Facades\Hash;
 class starting extends Command
 {
     protected $signature = 'app:starting';
-    // php artisan app:starting
     protected $description = 'Command description';
 
     public function handle()
