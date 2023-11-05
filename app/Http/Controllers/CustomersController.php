@@ -8,7 +8,6 @@ use App\Models\ComLog;
 use App\Models\Customers;
 use App\Models\EditHistory;
 use App\Models\TempDisapprove;
-use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use PDO;
@@ -70,19 +69,12 @@ class CustomersController extends Controller
         FROM R";
 
         if ($request->ajax()) {
-            // $osInfo = php_uname();
-            // $firstWord = strtok($osInfo, ' ');
-
-            // if (strcasecmp($firstWord, 'Windows') === 0) {
-            //     $data = DB::connection('sqlsrv')->select($sap_Query);
-            // } else {
             $serverName = "10.10.10.100";
             $databaseName = "TM";
             $uid = "ayman";
             $pwd = "admin@1234";
             $options = [
                 PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
-                // PDO::SQLSRV_ATTR_FETCHES_NUMERIC_TYPE => true,
                 "TrustServerCertificate" => true,
             ];
             $conn = new PDO("sqlsrv:server = $serverName; Database = $databaseName;", $uid, $pwd, $options);
@@ -90,7 +82,6 @@ class CustomersController extends Controller
             while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
                 $data[] = $row; // Append each row to the $data array
             }
-            // }
 
             $firstElement = $data[0];
             $allKeys = [];
@@ -100,16 +91,10 @@ class CustomersController extends Controller
                 $tdContent .= "<td>$key</td>";
             }
             $allCodes  = []; // ALL OUT CODES 
-            // if (strcasecmp($firstWord, 'Windows') === 0) {
-            //     foreach ($data as $index => $singleData) {
-            //         array_push($allCodes, $singleData->CardCode); //! important
-            //     }
-            // }
-            //  else {
+
             foreach ($data as $index => $singleData) {
                 array_push($allCodes, $singleData['CardCode']); //! important
             }
-            // }
             $custTableCodes = DB::table('customers')->pluck('CardCode')->toArray(); // ALL IN CODES
             // NOW delete ALL FROM card_code table and RE-FILL , reset also AUTO increment from 1 
             DB::table('card_codes')->delete();

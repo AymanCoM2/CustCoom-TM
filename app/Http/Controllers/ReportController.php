@@ -15,7 +15,6 @@ class ReportController extends Controller
         } else {
             return view('reports.index');
         }
-        // dd($reportNumber);
     }
 
     public function reportOne()
@@ -38,6 +37,3 @@ class ReportController extends Controller
 // "OwnerIDExpiryDate": "تاريخ انتهاء هوية المالك",
 // "CustomerType":"نوع العميل", 
 // آجل , اجل مستثني  , نقدى
-
-
-

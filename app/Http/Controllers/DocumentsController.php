@@ -10,10 +10,8 @@ class DocumentsController extends Controller
 {
     public function deleteBeforeApprove(Request $request)
     {
-        // docIdBeforeApprove
         $deletedDocument  = Documents::where('id', $request->docIdBeforeApprove)->first();
         $deletedDocument->delete();
-        // TODO unlinking Files 
         return back();
     }
     public function localGoogleDrive($cardCode)
@@ -44,7 +42,6 @@ class DocumentsController extends Controller
         $deletedDocument  = Documents::where('id', $request->docId)->first();
         // $request->docId ; 
         $deletedDocument->delete();
-        // TODO unlinking Files  From storage 
         return  back();
     }
 

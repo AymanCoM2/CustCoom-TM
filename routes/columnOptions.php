@@ -15,7 +15,6 @@ Route::post('/post-col-types', [ColumnController::class, 'columnTypesPost'])->na
 Route::get('/get-add-ddl', [ColumnController::class, 'columnDDLGet'])->name('col-ddl-get');
 Route::post('/post-add-ddl', [ColumnController::class, 'columnDDLPost'])->name('col-ddl-post');
 
-
 // ==============================
 Route::post('/delete-ddl-option', function (Request $request) {
     $toBeDeletedDDL = ColumnOption::query();
