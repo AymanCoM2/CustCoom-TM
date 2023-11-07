@@ -26,18 +26,18 @@
     <link href="{{ asset('css/bootstrap5.css') }}" rel="stylesheet" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cairo&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="{{ asset('css/fab.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/load-what-if.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/toastify.min.css') }}">
     <title>Customer Form Grouping</title>
 </head>
 
 <body>
-
     @if ($errors->any())
         <div class="alert alert-danger">
             <ul>
-                {{-- @foreach ($errors->all() as $error)
+                @foreach ($errors->all() as $error)
                     <li>{{ $error }}</li>
-                @endforeach --}}
+                @endforeach
                 <li>Check Errors in Field Below , Make Sure Date Fields are filled</li>
             </ul>
         </div>
@@ -50,20 +50,22 @@
             </div>
         @endif
 
+
         @if ((bool) $r)
-            <div class="alert alert-info m-2">
-                Check Profile [If Approved] :
-                <a href="{{ route('get-customer-form-g-what-if', $cardCode) }}" id="iframeLink">Check Link(Right
-                    Side)</a>
-                <a href="{{ route('customer-drive', $cardCode) }}" id="iframeLink3">Check Docs(Same page)</a>
-            </div>
+            <h3>Check Profile [If Approved] :</h3>
+
+            <a class="btn rounded-pill p-1 btn-info" href="{{ route('get-customer-form-g-what-if', $cardCode) }}"
+                id="iframeLink">Check Link(Right
+                Side)</a>
+            <a class="btn rounded-pill p-1 btn-warning" href="{{ route('customer-drive', $cardCode) }}"
+                id="iframeLink3">Check
+                Docs(Same page)</a>
             {{--  --}}
             {{--  --}}
-            <div class="row">
-                <button id="load_what_if" class="btn btn-warning">Click To Load Data Of What If Into Form TO
-                    Re-Edit</button>
-                <input type="hidden" id="what_if_card_code" value="{{ $cardCode }}">
-            </div>
+            {{-- <div class="row"> --}}
+            <button id="load_what_if" class="">Load Data Of What-If Into Form</button>
+            <input type="hidden" id="what_if_card_code" value="{{ $cardCode }}">
+            {{-- </div> --}}
             {{--  --}}
             {{--  --}}
         @endif
@@ -83,7 +85,6 @@
         <input type="hidden" value="{{ $cardCode }}" name="allApproveCustomerCode">
     </form>
 
-
     <form action="{{ route('handle-update-form') }}" method="POST" id='groupFormUpdate'>
         @csrf
         <input type="hidden" name="id" value="{{ $customerMySqlData->id }}">
@@ -93,21 +94,21 @@
 
 
 
-        @include('layouts.sep', ['variableName' => 'مجموعة -  1'])
+        @include('layouts.sep', ['variableName' => 'مجموعة - 1'])
         @include('groups.group-1')
-        @include('layouts.sep', ['variableName' => 'مجموعة -  2'])
+        @include('layouts.sep', ['variableName' => 'مجموعة - 2'])
         @include('groups.group-2')
-        @include('layouts.sep', ['variableName' => 'مجموعة -  3'])
+        @include('layouts.sep', ['variableName' => 'مجموعة - 3'])
         @include('groups.group-3')
-        @include('layouts.sep', ['variableName' => 'مجموعة -  4'])
+        @include('layouts.sep', ['variableName' => 'مجموعة - 4'])
         @include('groups.group-4')
-        @include('layouts.sep', ['variableName' => 'مجموعة -  5'])
+        @include('layouts.sep', ['variableName' => 'مجموعة - 5'])
         @include('groups.group-5')
-        @include('layouts.sep', ['variableName' => 'مجموعة -  6'])
+        @include('layouts.sep', ['variableName' => 'مجموعة - 6'])
         @include('groups.group-6')
-        @include('layouts.sep', ['variableName' => 'مجموعة -  7'])
+        @include('layouts.sep', ['variableName' => 'مجموعة - 7'])
         @include('groups.group-7')
-        @include('layouts.sep', ['variableName' => 'مجموعة -  8'])
+        @include('layouts.sep', ['variableName' => 'مجموعة - 8'])
         @include('groups.group-7-1')
         <br>
         @if (Auth::user()->isSuperUser == 1)
@@ -728,6 +729,7 @@
     @if (Auth::user()->isSuperUser == 1 || Auth::user()->isSuperUser == 2)
         @include('unified.load-what-if')
     @endif
+    <script src="{{ asset('js/toastify-js.js') }}"></script>
 </body>
 
 </html>
