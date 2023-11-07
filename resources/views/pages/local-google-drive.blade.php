@@ -60,11 +60,10 @@
                             </table>
                         </div>
                     </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    </div>
                 </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                </div>
-
             </div>
         </div>
     @endif
@@ -79,16 +78,14 @@
         </div>
     @endif
 
-    @if (Auth::user()->isSuperUser == 2 || Auth::user()->isSuperUser == 1)
-        <div class="alert alert-danger">
-            <a href="{{ route('get-customer-form-g', $cardCode) }}" id="iframeLink_x">تحميل بيانات العميل المسجلة
-                حاليا</a>
-            <br>
-            <a href="{{ route('get-customer-form-g-what-if', $cardCode) }}" id="iframeLink_y">تحميل بيانات العميل في
-                حالة
-                الموافقة على التعديلات</a>
-        </div>
-    @endif
+    <a class="btn p-1 border border-primary" href="{{ route('get-customer-form-g', $cardCode) }}"
+        id="iframeLink_x">تحميل بيانات العميل
+        المسجلة حاليا</a>
+    <br>
+    <a class="btn p-1 border border-danger" href="{{ route('get-customer-form-g-what-if', $cardCode) }}"
+        id="iframeLink_y">تحميل بيانات
+        العميل في حالة
+        الموافقة على التعديلات</a>
 
     <div id="myModal" class="modalOmola">
         <div class="modal-contentOmola">
@@ -108,7 +105,6 @@
                             <img class="pdfmime" data-pdf-thumbnail-file="{{ asset('storage/' . $document->path) }}"
                                 data-pdf-thumbnail-width="200">
                             <div class="card-header">
-
                                 <p>{{ $document->path }}</p>
                                 @if (Auth::user()->isSuperUser == 1)
                                     <a href="{{ route('delete-docu') }}" class="btn btn-danger"
@@ -147,7 +143,6 @@
                         <div class="card col-6 ">
                             <img src="{{ asset('storage/' . $document->path) }}" alt="" class="imgmime">
                             <div class="card-header">
-
                                 <p>{{ $document->path }}</p>
                                 @if (Auth::user()->isSuperUser == 1)
                                     <div class="row">
