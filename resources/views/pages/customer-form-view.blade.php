@@ -83,7 +83,7 @@
                                     foreach ($r as $singleEditArray):
                                         if ($singleEditArray['fieldName'] == $key):
                                             $data = 'Old Value : ' . $singleEditArray['oldValue'] . '<br>New Value:' . $singleEditArray['newValue'];
-                                            $data2 = '<br>Editor Name:' . App\Models\User::find($singleEditArray['editor_id'])->first()->name;
+                                            $data2 = '<br>Editor Name:' . App\Models\User::find($singleEditArray)->first()->name;
                                             $fullData = $data . $data2;
                                             // dd($fullData)  ;
 

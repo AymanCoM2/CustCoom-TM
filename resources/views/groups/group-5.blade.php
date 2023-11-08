@@ -8,7 +8,7 @@
                     foreach ($r as $singleEditArray):
                         if ($singleEditArray['fieldName'] == 'OwnerImg'):
                             $data = 'Old Value : ' . $singleEditArray['oldValue'] . '<br>New Value:' . $singleEditArray['newValue'];
-                            $data2 = '<br>Editor Name:' . App\Models\User::find($singleEditArray['editor_id'])->first()->name;
+                            $data2 = '<br>Editor Name:' . App\Models\User::find($singleEditArray)->first()->name;
                             $fullData = $data . $data2;
                             // dd($fullData)  ;
 
@@ -74,7 +74,7 @@
                     foreach ($r as $singleEditArray):
                         if ($singleEditArray['fieldName'] == 'OwnerIDExpiryDate'):
                             $data = 'Old Value : ' . $singleEditArray['oldValue'] . '<br>New Value:' . $singleEditArray['newValue'];
-                            $data2 = '<br>Editor Name:' . App\Models\User::find($singleEditArray['editor_id'])->first()->name;
+                            $data2 = '<br>Editor Name:' . App\Models\User::find($singleEditArray)->first()->name;
                             $fullData = $data . $data2;
                             // dd($fullData)  ;
 
@@ -146,7 +146,7 @@
                     foreach ($r as $singleEditArray):
                         if ($singleEditArray['fieldName'] == 'ObSupporterIdImg'):
                             $data = 'Old Value : ' . $singleEditArray['oldValue'] . '<br>New Value:' . $singleEditArray['newValue'];
-                            $data2 = '<br>Editor Name:' . App\Models\User::find($singleEditArray['editor_id'])->first()->name;
+                            $data2 = '<br>Editor Name:' . App\Models\User::find($singleEditArray)->first()->name;
                             $fullData = $data . $data2;
                             // dd($fullData)  ;
 
@@ -213,7 +213,7 @@
                     foreach ($r as $singleEditArray):
                         if ($singleEditArray['fieldName'] == 'ExpiryDateGuarantorPromissoryNote'):
                             $data = 'Old Value : ' . $singleEditArray['oldValue'] . '<br>New Value:' . $singleEditArray['newValue'];
-                            $data2 = '<br>Editor Name:' . App\Models\User::find($singleEditArray['editor_id'])->first()->name;
+                            $data2 = '<br>Editor Name:' . App\Models\User::find($singleEditArray)->first()->name;
                             $fullData = $data . $data2;
                             // dd($fullData)  ;
 
@@ -288,7 +288,7 @@
                     foreach ($r as $singleEditArray):
                         if ($singleEditArray['fieldName'] == 'ObFrstSeeIdImg'):
                             $data = 'Old Value : ' . $singleEditArray['oldValue'] . '<br>New Value:' . $singleEditArray['newValue'];
-                            $data2 = '<br>Editor Name:' . App\Models\User::find($singleEditArray['editor_id'])->first()->name;
+                            $data2 = '<br>Editor Name:' . App\Models\User::find($singleEditArray)->first()->name;
                             $fullData = $data . $data2;
                             // dd($fullData)  ;
 
@@ -354,7 +354,7 @@
                     foreach ($r as $singleEditArray):
                         if ($singleEditArray['fieldName'] == 'ExpirationDateFirstWitness'):
                             $data = 'Old Value : ' . $singleEditArray['oldValue'] . '<br>New Value:' . $singleEditArray['newValue'];
-                            $data2 = '<br>Editor Name:' . App\Models\User::find($singleEditArray['editor_id'])->first()->name;
+                            $data2 = '<br>Editor Name:' . App\Models\User::find($singleEditArray)->first()->name;
                             $fullData = $data . $data2;
                             // dd($fullData)  ;
 
@@ -427,7 +427,7 @@
                     foreach ($r as $singleEditArray):
                         if ($singleEditArray['fieldName'] == 'ObScndSeeIdImg'):
                             $data = 'Old Value : ' . $singleEditArray['oldValue'] . '<br>New Value:' . $singleEditArray['newValue'];
-                            $data2 = '<br>Editor Name:' . App\Models\User::find($singleEditArray['editor_id'])->first()->name;
+                            $data2 = '<br>Editor Name:' . App\Models\User::find($singleEditArray)->first()->name;
                             $fullData = $data . $data2;
                             // dd($fullData)  ;
 
@@ -493,7 +493,7 @@
                     foreach ($r as $singleEditArray):
                         if ($singleEditArray['fieldName'] == 'ExpiryDateSecondWitness'):
                             $data = 'Old Value : ' . $singleEditArray['oldValue'] . '<br>New Value:' . $singleEditArray['newValue'];
-                            $data2 = '<br>Editor Name:' . App\Models\User::find($singleEditArray['editor_id'])->first()->name;
+                            $data2 = '<br>Editor Name:' . App\Models\User::find($singleEditArray)->first()->name;
                             $fullData = $data . $data2;
                             // dd($fullData)  ;
 
