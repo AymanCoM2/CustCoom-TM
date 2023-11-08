@@ -163,13 +163,11 @@
             console.log($('#scrollY').val());
             $(window).scrollTop($('#scrollY').val());
 
-
             $('#groupFormUpdate').submit(function(e) {
                 $('#groupFormUpdate').addClass('d-none');
                 $('#central').removeClass('d-none');
                 $('#loadingSpinner').removeClass('d-none');
             });
-
 
             $('#all-approve').submit(function(e) {
                 $('#groupFormUpdate').addClass('d-none');
@@ -204,7 +202,6 @@
     @include('groups-js.g4')
     @include('groups-js.g5')
     @include('groups-js.g6')
-
 
     <script>
         document.addEventListener("DOMContentLoaded", function() {
@@ -256,22 +253,6 @@
                 }
             });
 
-            // ALERT START 
-            // // Flag to track if form is submitted
-            // let formSubmitted = false;
-            // // Set a listener for form submission
-            // document.getElementById('groupFormUpdate').addEventListener('submit', function() {
-            //     formSubmitted = true;
-            // });
-            // // Set a listener for beforeunload event
-            // window.addEventListener('beforeunload', function(e) {
-            //     if (!formSubmitted) {
-            //         e.preventDefault();
-            //         e.returnValue = undefined; // Necessary for some browsers
-            //         alert('Be Sure that all changes Are Saved !');
-            //     }
-            // });
-            // ALERT END  
 
             // Above is the Third  One 
             const CRExpiryDateInput = document.getElementsByName("CRExpiryDate")[0];
@@ -348,6 +329,11 @@
                     CRExpiryDate_hInput.value = ""; // Reset the value if the date is cleared
                 }
             });
+            // 
+
+          
+
+
 
             ExpirydateCommlicense.addEventListener("change", function() {
                 const selectedDate = ExpirydateCommlicense.value;
@@ -721,6 +707,7 @@
 
     @include('unified.uno')
     @include('unified.HijriLoad')
+    {{-- Convert the non-Converted --}}
     @if (Auth::user()->isSuperUser == 3)
         @include('unified.viewer-js')
     @endif

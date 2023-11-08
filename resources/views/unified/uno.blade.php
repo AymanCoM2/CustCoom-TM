@@ -217,4 +217,3 @@
     } // End of CalcHSL() 
     claculateHSL();
 </script>
-{{-- GROUP 6  --}}
