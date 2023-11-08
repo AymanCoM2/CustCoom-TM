@@ -331,9 +331,6 @@
             });
             // 
 
-          
-
-
 
             ExpirydateCommlicense.addEventListener("change", function() {
                 const selectedDate = ExpirydateCommlicense.value;
