@@ -115,7 +115,7 @@
                     $oldExpirydateCommlicense_h = old('ExpirydateCommlicense_h', $hijriData);
                     echo "<input type='text' class='form-control' value=\"$oldExpirydateCommlicense_h\" name='ExpirydateCommlicense_h' >";
                     $oldExpirydateCommlicense = old('ExpirydateCommlicense', $customerMySqlData->ExpirydateCommlicense ? $formatted2 : '');
-                    echo "<input type='date' id='start'  class='form-control' value=\"$oldExpirydateCommlicense\" name='ExpirydateCommlicense' />";
+                    echo "<input type='date' id='ExpirydateCommlicense'  class='form-control' value=\"$oldExpirydateCommlicense\" name='ExpirydateCommlicense' />";
                 endif;
             @endphp
         </div>

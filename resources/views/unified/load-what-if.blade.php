@@ -11,6 +11,7 @@
             }
         }).showToast();
         loadDataFromLink(userCardCode);
+
     });
 
     // 2 
@@ -37,7 +38,6 @@
         jsonDataObject.forEach(element => {
             // console.log(element.fieldName, element.newValue);
             let els = document.getElementsByName(element.fieldName);
-
             // if (els.length > 0) { // IT IS ALWAYS Bigger than 0 
             // Check the type of the first element in the collection (index 0)
             let el = els[0];
@@ -62,6 +62,31 @@
                     cancelable: true
                 });
                 el.dispatchEvent(event);
+            }
+            if (element.fieldName == "ExpirydateCommlicense") {
+                let x = document.getElementById("ExpirydateCommlicense");
+                let y = document.getElementsByName("ExpirydateCommlicense_h")[0];
+                console.log("The Value = " + x.value)
+                let zz = y.value;
+                if (zz) {
+                    const apiEndpoint = `http://api.aladhan.com/v1/hToG/${zz}`;
+                    fetch(apiEndpoint)
+                        .then(response => response.json())
+                        .then(data => {
+                            const convertedDate = data.data.gregorian.date;
+                            const dateParts = convertedDate.split("-");
+                            const year = dateParts[0];
+                            const month = dateParts[1];
+                            const day = dateParts[2];
+                            const forma = `${day}-${month}-${year}`;
+                            x.value = forma;
+                        })
+                        .catch(error => {
+                            console.error("Error fetching API data:", error);
+                        });
+                } else {
+                    y.value = "";
+                }
             }
             // }
         });
