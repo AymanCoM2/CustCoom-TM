@@ -294,6 +294,7 @@ class CustomersController extends Controller
             $updatedCustomer  = Customers::where('id', $request->id)->first();
             $updatedCustomer->update($request->all()); // ^ This is the Update 
             // Check Sanad and  Sejel 
+            $updatedCustomer->save();
             if (!isset($request->CommercialRegister)) {
                 $updatedCustomer->CommercialRegister = null;
             }
