@@ -105,7 +105,14 @@
                             <img class="pdfmime" data-pdf-thumbnail-file="{{ asset('storage/' . $document->path) }}"
                                 data-pdf-thumbnail-width="200">
                             <div class="card-header">
-                                <p>{{ $document->path }}</p>
+                                @php
+                                    $finalName = '';
+                                    $fn = explode('/', $document->path);
+                                    $finalName = end($fn);
+                                    $fn = explode('--', $finalName);
+                                    $finalName = end($fn);
+                                @endphp
+                                <p>{{ $finalName }}</p>
                                 @if (Auth::user()->isSuperUser == 1)
                                     <a href="{{ route('delete-docu') }}" class="btn btn-danger"
                                         onclick="event.preventDefault();
