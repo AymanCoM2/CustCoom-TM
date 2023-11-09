@@ -27,6 +27,12 @@ class LocalStorageController extends Controller
         foreach ($allPdfFiles as $aPdfFile) {
             $aDocument  = new Documents();
             $fileName  = $aPdfFile->getClientOriginalName();
+            // Remove Any Dashes From the Name 
+
+            // Remove dashes, spaces, and plus signs
+            $fileName = str_replace(["-", " ", "+"], "", $fileName);
+            // Remove all non-alphanumeric characters
+            $fileName = preg_replace("/[^a-zA-Z0-9]/", "", $fileName);
             $mimeParts  = explode('/', $aPdfFile->getMimeType());
             $realExtension  = end($mimeParts);
             $newFileName  = time() . '--' . $fileName; // With timestamp
@@ -38,7 +44,7 @@ class LocalStorageController extends Controller
             );
             $aDocument->path = $responsePath;
             $aDocument->customer_id  = $customerId;
-            $aDocument->uploaded_id  = $request->user()->id; 
+            $aDocument->uploaded_id  = $request->user()->id;
             $aDocument->mimeType  = $realExtension;
             $aDocument->save();
         }
