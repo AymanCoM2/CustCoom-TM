@@ -1,9 +1,12 @@
 <?php
 
 use App\Models\CardCode;
+use App\Models\ComLog;
 use App\Models\Customers;
 use App\Models\Documents;
+use App\Models\EditGrave;
 use App\Models\EditHistory;
+use App\Models\TempDisapprove;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
@@ -73,4 +76,43 @@ Route::get('/load-customers-files', function () {
         $userDocument->path = $file;  // ^ Path = $file 
         $userDocument->save();
     }
+});
+
+
+Route::get('/fix-k', function () {
+    // Get all Models that Have k0018 and Make them K capital 
+    //  and then Close it 
+    $cc = CardCode::where('cc', 'k0018')->get();
+    $logs = ComLog::where('userCardCode', 'k0018')->get();
+    $customers = Customers::where('CardCode', 'k0018')->get();
+    $editGraves = EditGrave::where('cardCode', 'k0018')->get();
+    $editHistory = EditHistory::where('cardCode', 'k0018')->get();
+    $tempDispproves = TempDisapprove::where('cardCode', 'k0018')->get();
+
+    // Make Get and Loop For them All and Them KKK
+    foreach ($cc as  $object) {
+        $object->cc = 'K0018';
+        $object->save();
+    }
+    foreach ($logs as  $object) {
+        $object->userCardCode = 'K0018';
+        $object->save();
+    }
+    foreach ($customers as  $object) {
+        $object->CardCode = 'K0018';
+        $object->save();
+    }
+    foreach ($editGraves as  $object) {
+        $object->cardCode = 'K0018';
+        $object->save();
+    }
+    foreach ($editHistory as  $object) {
+        $object->cardCode = 'K0018';
+        $object->save();
+    }
+    foreach ($tempDispproves as  $object) {
+        $object->cardCode = 'K0018';
+        $object->save();
+    }
+    dd("DONE");
 });
