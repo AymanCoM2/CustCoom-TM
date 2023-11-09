@@ -1,5 +1,5 @@
 <script>
-    $('.unified_check').on("myCustomEvent change", function() {
+    $('.unified_check_6').on("myCustomEvent change", function() {
         // Find the nearest radio button
         var nearestRadio = $(this).closest('.row').find('input[type="radio"]:checked');
         // Check if the nearest radio button's value is "موجود"
@@ -18,180 +18,84 @@
         }
     });
 
-    // Radio 
-    $(':input[name="OwnerImg"]').on("myCustomEvent change", function() {
-        firstCouple();
+    $(':input[name="NationalAddrOrgImg"]').on("myCustomEvent change", function() {
+        firstCombination();
         var selectedValue = $(this).val();
-        var checkboxValue_1 = $(this).closest('.row').find('.unified_check').prop("checked");
-        if (selectedValue == 'موجود' && checkboxValue_1) {
-            $(':input[name="OwnerIDExpiryDate"]').attr('required', true);
-            $(':input[name="OwnerIDExpiryDate"]').addClass('border border-danger');
-            // $(':input[name="OwnerIDExpiryDate"]').prop('disabled', false);
-        } else {
-            $(':input[name="OwnerIDExpiryDate"]').attr('required', false);
-            $(':input[name="OwnerIDExpiryDate"]').removeClass('border border-danger');
-            // $(':input[name="OwnerIDExpiryDate"]').val('');
-            // $(':input[name="OwnerIDExpiryDate_h"]').val('');
-            // $(':input[name="OwnerIDExpiryDate"]').prop('disabled', true);
-        }
-    });
-
-    // DATE input 
-    $(':input[name="OwnerIDExpiryDate"]').on("myCustomEvent change", function() {
-        firstCouple();
-    });
-
-    $(':input[name="OwnerIDExpiryDate_h"]').on("myCustomEvent blur", function() {
-        setTimeout(function() {
-            firstCouple();
-        }, 100); // Adjust the delay as needed
-    });
-
-    // Radio 
-    $(':input[name="ObSupporterIdImg"]').on("myCustomEvent change", function() {
-        secondCouple();
-        var selectedValue = $(this).val();
-        var checkboxValue_1 = $(this).closest('.row').find('.unified_check').prop("checked");
+        var checkboxValue_1 = $(this).closest('.row').find('.unified_check_6').prop("checked");
         if (selectedValue == 'موجود' & checkboxValue_1) {
-            $(':input[name="ExpiryDateGuarantorPromissoryNote"]').attr('required', true);
-            $(':input[name="ExpiryDateGuarantorPromissoryNote"]').addClass('border border-danger');
-            // $(':input[name="ExpiryDateGuarantorPromissoryNote"]').prop('disabled', false);
+            $(':input[name="ExpiryDateNationalAddress"]').attr('required', true);
+            $(':input[name="ExpiryDateNationalAddress"]').addClass('border border-danger');
+            // $(':input[name="ExpiryDateNationalAddress"]').prop('disabled', false);
         } else {
-            $(':input[name="ExpiryDateGuarantorPromissoryNote"]').attr('required', false);
-            $(':input[name="ExpiryDateGuarantorPromissoryNote"]').removeClass('border border-danger');
-            // $(':input[name="ExpiryDateGuarantorPromissoryNote"]').val('');
-            // $(':input[name="ExpiryDateGuarantorPromissoryNote_h"]').val('');
-            // $(':input[name="ExpiryDateGuarantorPromissoryNote"]').prop('disabled', true);
-
+            $(':input[name="ExpiryDateNationalAddress"]').attr('required', false);
+            $(':input[name="ExpiryDateNationalAddress"]').removeClass('border border-danger');
+            $(':input[name="ExpiryDateNationalAddress"]').val('');
+            $(':input[name="ExpiryDateNationalAddress_h"]').val('');
+            // $(':input[name="ExpiryDateNationalAddress"]').prop('disabled', true);
         }
     });
 
-    // DATE input 
-    $(':input[name="ExpiryDateGuarantorPromissoryNote"]').on("myCustomEvent change", function() {
-        secondCouple();
+    $(':input[name="ExpiryDateNationalAddress"]').on("myCustomEvent change", function() {
+        firstCombination();
     });
-
-    $(':input[name="ExpiryDateGuarantorPromissoryNote_h"]').on("myCustomEvent blur", function() {
+    $(':input[name="ExpiryDateNationalAddress_h"]').on("myCustomEvent blur", function() {
         setTimeout(function() {
-            secondCouple();
+            firstCombination();
         }, 100); // Adjust the delay as needed
     });
 
-    // Radio 
-    $(':input[name="ObFrstSeeIdImg"]').on("myCustomEvent change", function() {
-        thirdCouple();
+    $(':input[name="NationalAddrFirstSupOb"]').on("myCustomEvent change", function() {
+        secondCombination();
         var selectedValue = $(this).val();
-        var checkboxValue_1 = $(this).closest('.row').find('.unified_check').prop("checked");
+        var checkboxValue_1 = $(this).closest('.row').find('.unified_check_6').prop("checked");
         if (selectedValue == 'موجود' & checkboxValue_1) {
-            // $('p[name="hala_3"]').text('سارى');
-            $(':input[name="ExpirationDateFirstWitness"]').attr('required', true);
-            $(':input[name="ExpirationDateFirstWitness"]').addClass('border border-danger');
-            // $(':input[name="ExpirationDateFirstWitness"]').prop('disabled', false);
-
+            $(':input[name="ExpiryDateNationalAddressReserveGuarantor"]').attr('required', true);
+            $(':input[name="ExpiryDateNationalAddressReserveGuarantor"]').addClass('border border-danger');
+            // $(':input[name="ExpiryDateNationalAddressReserveGuarantor"]').prop('disabled', false);
         } else {
-            // $('p[name="hala_3"]').text('يجب اعادة طلبه');
-            $(':input[name="ExpirationDateFirstWitness"]').attr('required', false);
-            $(':input[name="ExpirationDateFirstWitness"]').removeClass('border border-danger');
-            // $(':input[name="ExpirationDateFirstWitness"]').val('');
-            // $(':input[name="ExpirationDateFirstWitness_h"]').val('');
-            // $(':input[name="ExpirationDateFirstWitness"]').prop('disabled', true);
+            $(':input[name="ExpiryDateNationalAddressReserveGuarantor"]').attr('required', false);
+            $(':input[name="ExpiryDateNationalAddressReserveGuarantor"]').removeClass(
+                'border border-danger');
+            $(':input[name="ExpiryDateNationalAddressReserveGuarantor"]').val('');
+            $(':input[name="ExpiryDateNationalAddressReserveGuarantor_h"]').val('');
+            // $(':input[name="ExpiryDateNationalAddressReserveGuarantor"]').prop('disabled', true);
         }
     });
 
-    // DATE input 
-    $(':input[name="ExpirationDateFirstWitness"]').on("myCustomEvent change", function() {
-        thirdCouple();
+    $(':input[name="ExpiryDateNationalAddressReserveGuarantor"]').on("myCustomEvent change", function() {
+        secondCombination();
     });
-
-    $(':input[name="ExpirationDateFirstWitness_h"]').on("myCustomEvent blur", function() {
+    $(':input[name="ExpiryDateNationalAddressReserveGuarantor_h"]').on("myCustomEvent blur", function() {
         setTimeout(function() {
-            thirdCouple();
+            secondCombination();
         }, 100); // Adjust the delay as needed
     });
 
-    // Radio 
-    $(':input[name="ObScndSeeIdImg"]').on("myCustomEvent change", function() {
-        fourthCouple();
-        var selectedValue = $(this).val();
-        var checkboxValue_1 = $(this).closest('.row').find('.unified_check').prop("checked");
-        if (selectedValue == 'موجود' & checkboxValue_1) {
-            $(':input[name="ExpiryDateSecondWitness"]').attr('required', true);
-            $(':input[name="ExpiryDateSecondWitness"]').addClass('border border-danger');
-            // $(':input[name="ExpiryDateSecondWitness"]').prop('disabled', false);
-        } else {
-            $(':input[name="ExpiryDateSecondWitness"]').attr('required', false);
-            $(':input[name="ExpiryDateSecondWitness"]').removeClass('border border-danger');
-            // $(':input[name="ExpiryDateSecondWitness"]').val('');
-            // $(':input[name="ExpiryDateSecondWitness_h"]').val('');
-            // $(':input[name="ExpiryDateSecondWitness"]').prop('disabled', true);
-        }
-    });
-
-    // DATE input 
-    $(':input[name="ExpiryDateSecondWitness"]').on("myCustomEvent change", function() {
-        fourthCouple();
-    });
-
-    $(':input[name="ExpiryDateSecondWitness_h"]').on("myCustomEvent blur", function() {
-        setTimeout(function() {
-            fourthCouple();
-        }, 100); // Adjust the delay as needed
-    });
-
-
-    function firstCouple() {
+    function firstCombination() {
         let fixedPeriod = 1;
-        let date_5_1 = $(':input[name="OwnerIDExpiryDate"]').val();
-        let check_5_2 = $('input[name="OwnerImg"]:checked').val();
+        let date_5_1 = $(':input[name="ExpiryDateNationalAddress"]').val();
+        let check_5_2 = $('input[name="NationalAddrOrgImg"]:checked').val();
         let todayExtraFixed = new Date();
         todayExtraFixed.setMonth(todayExtraFixed.getMonth() + fixedPeriod)
         let theirDate_345 = new Date(date_5_1);
         if ((theirDate_345 > todayExtraFixed) && (check_5_2 == 'موجود')) {
-            $('p[name="hala_1"]').text('سارى');
+            $('p[name="hala_12"]').text('سارى');
         } else {
-            $('p[name="hala_1"]').text('يجب اعادة طلبه');
+            $('p[name="hala_12"]').text('يجب اعادة طلبه');
         }
     }
 
-    function secondCouple() {
+    function secondCombination() {
         let fixedPeriod = 1;
-        let date_5_1 = $(':input[name="ExpiryDateGuarantorPromissoryNote"]').val();
-        let check_5_2 = $('input[name="ObSupporterIdImg"]:checked').val();
+        let date_5_1 = $(':input[name="ExpiryDateNationalAddressReserveGuarantor"]').val();
+        let check_5_2 = $('input[name="NationalAddrFirstSupOb"]:checked').val();
         let todayExtraFixed = new Date();
         todayExtraFixed.setMonth(todayExtraFixed.getMonth() + fixedPeriod)
         let theirDate_345 = new Date(date_5_1);
         if ((theirDate_345 > todayExtraFixed) && (check_5_2 == 'موجود')) {
-            $('p[name="hala_2"]').text('سارى');
+            $('p[name="hala_22"]').text('سارى');
         } else {
-            $('p[name="hala_2"]').text('يجب اعادة طلبه');
-        }
-    }
-
-    function thirdCouple() {
-        let fixedPeriod = 1;
-        let date_5_1 = $(':input[name="ExpirationDateFirstWitness"]').val();
-        let check_5_2 = $('input[name="ObFrstSeeIdImg"]:checked').val();
-        let todayExtraFixed = new Date();
-        todayExtraFixed.setMonth(todayExtraFixed.getMonth() + fixedPeriod)
-        let theirDate_345 = new Date(date_5_1);
-        if ((theirDate_345 > todayExtraFixed) && (check_5_2 == 'موجود')) {
-            $('p[name="hala_3"]').text('سارى');
-        } else {
-            $('p[name="hala_3"]').text('يجب اعادة طلبه');
-        }
-    }
-
-    function fourthCouple() {
-        let fixedPeriod = 1;
-        let date_5_1 = $(':input[name="ExpiryDateSecondWitness"]').val();
-        let check_5_2 = $('input[name="ObScndSeeIdImg"]:checked').val();
-        let todayExtraFixed = new Date();
-        todayExtraFixed.setMonth(todayExtraFixed.getMonth() + fixedPeriod)
-        let theirDate_345 = new Date(date_5_1);
-        if ((theirDate_345 > todayExtraFixed) && (check_5_2 == 'موجود')) {
-            $('p[name="hala_4"]').text('سارى');
-        } else {
-            $('p[name="hala_4"]').text('يجب اعادة طلبه');
+            $('p[name="hala_22"]').text('يجب اعادة طلبه');
         }
     }
 </script>

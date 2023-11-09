@@ -8,6 +8,7 @@ use App\Models\ComLog;
 use App\Models\Customers;
 use App\Models\EditHistory;
 use App\Models\TempDisapprove;
+use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use PDO;
@@ -22,9 +23,8 @@ class CustomersController extends Controller
     public function customersTablePost(Request $request)
     {
         // $sap_Query = "
-        // SELECT * from TM_CustomerData
+        // SELECT * from LB_CustomerData
         // ";
-
         $sap_Query = "
         --CREATE VIEW CustData AS 
         WITH 
@@ -38,7 +38,7 @@ class CustomersController extends Controller
         MAX(T0.[Balance]) 'Balance',
         MAX(T0.CreditLinE) 'CreditLinE'
 
-        FROM TM.DBO.[2022DueMaster] T0
+        FROM LB.DBO.[2022DueMaster] T0
         WHERE T0.[Due Period] >= 60
         GROUP BY T0.CCode),
 
@@ -52,7 +52,7 @@ class CustomersController extends Controller
         END AS 'Avaliable CreditLine' , T0.Free_Text, T0.GroupNum
 
 
-        FROM (TM.DBO.OCRD T0 LEFT JOIN TM.DBO.OCRG C1 ON T0.GroupCode = C1.GroupCode)
+        FROM (LB.DBO.OCRD T0 LEFT JOIN LB.DBO.OCRG C1 ON T0.GroupCode = C1.GroupCode)
         LEFT JOIN CustDue T1 ON T1.CCode = T0.CardCode
         LEFT JOIN OCTG C0 ON T0.GroupNum = C0.GroupNum
 
@@ -69,12 +69,19 @@ class CustomersController extends Controller
         FROM R";
 
         if ($request->ajax()) {
+            // $osInfo = php_uname();
+            // $firstWord = strtok($osInfo, ' ');
+            // if (strcasecmp($firstWord, 'Windows') === 0) {
+            //     $data = DB::connection('sqlsrv')->select($sap_Query);
+            // } 
+            // else {
             $serverName = "10.10.10.100";
-            $databaseName = "TM";
+            $databaseName = "LB";
             $uid = "ayman";
             $pwd = "admin@1234";
             $options = [
                 PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
+                // PDO::SQLSRV_ATTR_FETCHES_NUMERIC_TYPE => true,
                 "TrustServerCertificate" => true,
             ];
             $conn = new PDO("sqlsrv:server = $serverName; Database = $databaseName;", $uid, $pwd, $options);
@@ -82,6 +89,7 @@ class CustomersController extends Controller
             while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
                 $data[] = $row; // Append each row to the $data array
             }
+            // }
 
             $firstElement = $data[0];
             $allKeys = [];
@@ -91,10 +99,15 @@ class CustomersController extends Controller
                 $tdContent .= "<td>$key</td>";
             }
             $allCodes  = []; // ALL OUT CODES 
-
+            // if (strcasecmp($firstWord, 'Windows') === 0) {
+            //     foreach ($data as $index => $singleData) {
+            //         array_push($allCodes, $singleData->CardCode); //! important
+            //     }
+            // } else {
             foreach ($data as $index => $singleData) {
                 array_push($allCodes, $singleData['CardCode']); //! important
             }
+            // }
             $custTableCodes = DB::table('customers')->pluck('CardCode')->toArray(); // ALL IN CODES
             // NOW delete ALL FROM card_code table and RE-FILL , reset also AUTO increment from 1 
             DB::table('card_codes')->delete();
@@ -116,9 +129,8 @@ class CustomersController extends Controller
     public static function getSingleCustomerData($querySingleCode)
     {
         // $sap_Query = "
-        // SELECT * from TM_CustomerData
+        // SELECT * from LB_CustomerData
         // ";
-
         $sap_Query = "
         --CREATE VIEW CustData AS 
         WITH 
@@ -132,7 +144,7 @@ class CustomersController extends Controller
         MAX(T0.[Balance]) 'Balance',
         MAX(T0.CreditLinE) 'CreditLinE'
 
-        FROM TM.DBO.[2022DueMaster] T0
+        FROM LB.DBO.[2022DueMaster] T0
         WHERE T0.[Due Period] >= 60
         GROUP BY T0.CCode),
 
@@ -146,7 +158,7 @@ class CustomersController extends Controller
         END AS 'Avaliable CreditLine' , T0.Free_Text, T0.GroupNum
 
 
-        FROM (TM.DBO.OCRD T0 LEFT JOIN TM.DBO.OCRG C1 ON T0.GroupCode = C1.GroupCode)
+        FROM (LB.DBO.OCRD T0 LEFT JOIN LB.DBO.OCRG C1 ON T0.GroupCode = C1.GroupCode)
         LEFT JOIN CustDue T1 ON T1.CCode = T0.CardCode
         LEFT JOIN OCTG C0 ON T0.GroupNum = C0.GroupNum
 
@@ -161,9 +173,6 @@ class CustomersController extends Controller
             ELSE N'غير متجاوز الفترة الائتمانية'
             END AS 'DueAmount State'
         FROM R";
-
-
-
         // $osInfo = php_uname();
         // $firstWord = strtok($osInfo, ' ');
 
@@ -171,7 +180,7 @@ class CustomersController extends Controller
         //     $data = DB::connection('sqlsrv')->select($sap_Query);
         // } else {
         $serverName = "10.10.10.100";
-        $databaseName = "TM";
+        $databaseName = "LB";
         $uid = "ayman";
         $pwd = "admin@1234";
         $options = [
@@ -185,7 +194,6 @@ class CustomersController extends Controller
             $data[] = $row; // Append each row to the $data array
         }
         // }
-
 
         foreach ($data as $datium) {
             foreach ($datium as $key => $value) {
@@ -210,7 +218,6 @@ class CustomersController extends Controller
             $newMySqlCustomer->save();
             $customerMySqlData = $newMySqlCustomer;
         }
-
         return view('pages.customer-form-view', compact(['customerSapData', 'customerMySqlData', 'cardCode']));
     }
 
@@ -249,6 +256,7 @@ class CustomersController extends Controller
             $customerMySqlData = $newMySqlCustomer;
             session()->flash('init', 'This User Record is Initiated For the First Time , All Data Are From Sap Only');
         }
+
         return view('pages.what-if-form', compact(['customerSapData', 'customerMySqlData', 'cardCode']));
     }
 
@@ -258,7 +266,6 @@ class CustomersController extends Controller
         $driveURL = "https://drive.google.com/a/2coom.COM/embeddedfolderview?id=1NkuNjvYAU7OhDc5nkI0a9CxTKQRvEPlz&amp;usp=sharing#grid";
         $localUrl  = "http://127.0.0.1:8000/storage/pdfs/customer_123/FWXJpxCpGlN6TPKxm12AE1jb3KemJiRJHahC2QRA.pdf";
         $url  = $driveURL;
-        // $url  = "https://drive.google.com/a/2coom.COM/embeddedfolderview?id=1NkuNjvYAU7OhDc5nkI0a9CxTKQRvEPlz#grid"; //working 
         return view('pages.customer-frame-view-drive', compact(['cardCode', 'url']));
     }
 
@@ -285,7 +292,7 @@ class CustomersController extends Controller
 
         if ($request->user()->isSuperUser == 1) {
             $updatedCustomer  = Customers::where('id', $request->id)->first();
-            $updatedCustomer->update($request->all());
+            $updatedCustomer->update($request->all()); // ^ This is the Update 
             // Check Sanad and  Sejel 
             if (!isset($request->CommercialRegister)) {
                 $updatedCustomer->CommercialRegister = null;
@@ -328,6 +335,36 @@ class CustomersController extends Controller
                 $updatedCustomer->ExpirydateCommlicense = null;
             }
 
+
+
+
+
+
+            //------------------------------
+            if ($updatedCustomer->OwnerImg == "غير موجود" ||  $updatedCustomer->OwnerImg == null) {
+                $updatedCustomer->OwnerIDExpiryDate = null;
+            }
+            if ($updatedCustomer->ObSupporterIdImg == "غير موجود" ||  $updatedCustomer->ObSupporterIdImg == null) {
+                $updatedCustomer->ExpiryDateGuarantorPromissoryNote = null;
+            }
+            if ($updatedCustomer->ObFrstSeeIdImg == "غير موجود" ||  $updatedCustomer->ObFrstSeeIdImg == null) {
+                $updatedCustomer->ExpirationDateFirstWitness = null;
+            }
+            if ($updatedCustomer->ObScndSeeIdImg == "غير موجود" ||  $updatedCustomer->ObScndSeeIdImg == null) {
+                $updatedCustomer->ExpiryDateSecondWitness = null;
+            }
+            //--------------------------------
+
+            //------------------------------
+            if ($updatedCustomer->NationalAddrOrgImg == "غير موجود" ||  $updatedCustomer->NationalAddrOrgImg == null) {
+                $updatedCustomer->ExpiryDateNationalAddress = null;
+            }
+            if ($updatedCustomer->NationalAddrFirstSupOb == "غير موجود" ||  $updatedCustomer->NationalAddrFirstSupOb == null) {
+                $updatedCustomer->ExpiryDateNationalAddressReserveGuarantor = null;
+            }
+
+            //--------------------------------
+
             $updatedCustomer->save();
             return back();
         } else {
@@ -347,11 +384,6 @@ class CustomersController extends Controller
                             $editHistory->newValue = $filtered[$key];
                             $editHistory->isApproved  = false;
                             $editHistory->save();
-
-                            // Check in TempDisapprove that 
-                            // IF there is a Row With Same CardCode and Same FIeld Name 
-                            // Then Remove it from this Model 
-                            // Delete this Record 
                             $tmp = TempDisapprove::where('cardCode', $editHistory->cardCode)
                                 ->where('fieldName', $editHistory->fieldName)
                                 ->first();
@@ -375,10 +407,6 @@ class CustomersController extends Controller
                             if ($tmp) {
                                 $tmp->delete();
                             }
-                            // Check in TempDisapprove that 
-                            // IF there is a Row With Same CardCode and Same FIeld Name 
-                            // Then Remove it from this Model 
-                            // Delete this Record 
                         }
                     }
                 }
