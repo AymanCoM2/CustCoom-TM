@@ -18,7 +18,6 @@
         }
     });
 
-
     // Radio 
     $(':input[name="OwnerImg"]').on("myCustomEvent change", function() {
         firstCouple();
@@ -41,6 +40,7 @@
     $(':input[name="OwnerIDExpiryDate"]').on("myCustomEvent change", function() {
         firstCouple();
     });
+
     $(':input[name="OwnerIDExpiryDate_h"]').on("myCustomEvent blur", function() {
         setTimeout(function() {
             firstCouple();
@@ -70,6 +70,7 @@
     $(':input[name="ExpiryDateGuarantorPromissoryNote"]').on("myCustomEvent change", function() {
         secondCouple();
     });
+
     $(':input[name="ExpiryDateGuarantorPromissoryNote_h"]').on("myCustomEvent blur", function() {
         setTimeout(function() {
             secondCouple();
@@ -101,6 +102,7 @@
     $(':input[name="ExpirationDateFirstWitness"]').on("myCustomEvent change", function() {
         thirdCouple();
     });
+
     $(':input[name="ExpirationDateFirstWitness_h"]').on("myCustomEvent blur", function() {
         setTimeout(function() {
             thirdCouple();
@@ -129,13 +131,13 @@
     $(':input[name="ExpiryDateSecondWitness"]').on("myCustomEvent change", function() {
         fourthCouple();
     });
+
     $(':input[name="ExpiryDateSecondWitness_h"]').on("myCustomEvent blur", function() {
         setTimeout(function() {
             fourthCouple();
         }, 100); // Adjust the delay as needed
     });
 
-    // For each Couple >> Get the Radio Value & Data and Check Them
 
     function firstCouple() {
         let fixedPeriod = 1;

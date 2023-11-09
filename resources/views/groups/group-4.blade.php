@@ -1,6 +1,5 @@
 <div class="container-fluid ">
     <div class="row">
-        {{-- 1 --}}
         {{--  --}}
         <div class="sanad-g  col-sm-6 {{ $errors->has('OrderBond') ? 'border border-danger' : '' }}">
             <label for="" class="form-label bg-light w-100 fw-bold d-block"> {{ __('OrderBond', [], 'ar') }}

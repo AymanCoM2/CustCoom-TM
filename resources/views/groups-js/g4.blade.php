@@ -7,11 +7,6 @@
         var selectedValue = $(this).val();
         if (selectedValue == 'موجود') {
             markRequired();
-            // if ($('#COM').text() == 'LB') {
-            //     $('p[name="mazbota"]').text(Number($(':input[name="ValueOrderException"]').val()) / 2);
-            // } else {
-            //     $('p[name="mazbota"]').text(Number($(':input[name="ValueOrderException"]').val()) * 0.8);
-            // }
             $('p[name="mazbota"]').text(Number($(':input[name="ValueOrderException"]').val()) * 0.8);
 
             // HERE 
@@ -54,25 +49,13 @@
         let mazValue = 0;
         let selectedValue = $(':input[name="OrderBond"]:checked').val();
         if (selectedValue == 'موجود') {
-            // markRequired();
-            // if ($('#COM').text() == 'LB') {
-            //     $('p[name="mazbota"]').text(Number($(':input[name="ValueOrderException"]').val()) / 2);
-            //     mazValue = Number(Number($(':input[name="ValueOrderException"]').val()) / 2);
-            // } else {
-            //     $('p[name="mazbota"]').text(Number($(':input[name="ValueOrderException"]').val()) * 0.8);
-            //     mazValue = Number(Number($(':input[name="ValueOrderException"]').val())  * 0.8);
-            // }
             $('p[name="mazbota"]').text(Number($(':input[name="ValueOrderException"]').val()) * 0.8);
             mazValue = Number(Number($(':input[name="ValueOrderException"]').val()) * 0.8);
-
-            // console.log(mazValue);
         } else if (selectedValue == 'مستثنى') {
-            // markRequired();
             $('p[name="mazbota"]').text($(':input[name="ValueOrderException"]').val());
             mazValue = Number(Number($(':input[name="ValueOrderException"]').val()));
             console.log(mazValue);
         } else {
-            // removeRequired();
             $('p[name="mazbota"]').text('0');
             mazValue = 0;
             console.log(mazValue);
@@ -125,7 +108,6 @@
         $(':input[name="ValueOrderException"]').removeClass('border border-danger');
         $(':input[name="CreationDateOrderOrException"]').removeClass('border border-danger');
     }
-    // =============================================================
 
     function claculateHSL() {
         // ([[سند الامر]]=="موجود",

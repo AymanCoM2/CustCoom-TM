@@ -1,5 +1,4 @@
 <div class="container-fluid">
-
     <div class="row">
         <div class="col-sm-4 {{ $errors->has('NationalAddrOrgImg') ? 'border border-danger' : '' }}">
             <label for="" class="form-label bg-light w-100 fw-bold d-block">
@@ -278,5 +277,4 @@
             @endphp</p>
         </div>
     </div>
-
 </div>

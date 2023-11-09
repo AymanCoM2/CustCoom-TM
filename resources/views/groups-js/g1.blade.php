@@ -1,6 +1,4 @@
-<script></script>
 <script>
-    // /////////////////////// 1 
     // حالة طلب فتح الحساب
     var calcElement_1 = $('p[name="calc_g2_1"]');
     $(':input[name="OpenAccountPropose"]').on("myCustomEvent change", function() {
@@ -37,7 +35,6 @@
             // console.log("Radio button unchecked.");
         }
     });
-
 
     // /////////////////////// 3 
     $(':input[name="TaxCard"]').on("myCustomEvent change", function() {

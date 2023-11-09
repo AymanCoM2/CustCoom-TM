@@ -38,6 +38,7 @@
     $(':input[name="ExpiryDateNationalAddress"]').on("myCustomEvent change", function() {
         firstCombination();
     });
+
     $(':input[name="ExpiryDateNationalAddress_h"]').on("myCustomEvent blur", function() {
         setTimeout(function() {
             firstCombination();
@@ -65,6 +66,7 @@
     $(':input[name="ExpiryDateNationalAddressReserveGuarantor"]').on("myCustomEvent change", function() {
         secondCombination();
     });
+
     $(':input[name="ExpiryDateNationalAddressReserveGuarantor_h"]').on("myCustomEvent blur", function() {
         setTimeout(function() {
             secondCombination();

@@ -249,7 +249,6 @@ class CustomersController extends Controller
             $customerMySqlData = $newMySqlCustomer;
             session()->flash('init', 'This User Record is Initiated For the First Time , All Data Are From Sap Only');
         }
-
         return view('pages.what-if-form', compact(['customerSapData', 'customerMySqlData', 'cardCode']));
     }
 

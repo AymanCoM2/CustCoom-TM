@@ -1,8 +1,6 @@
 <div class="container-fluid ">
     <div class="row">
-
-
-        {{-- 2 --}}
+        {{--  --}}
         <div class="col-sm-6 {{ $errors->has('OpenAccountPropose') ? 'border border-danger' : '' }} ">
             <label for="" class="form-label bg-light w-100 fw-bold d-block">
                 {{ __('OpenAccountPropose', [], 'ar') }}
@@ -60,7 +58,7 @@
             @endphp
         </div>
 
-        {{-- 3 --}}
+        {{--  --}}
         <div class="col-sm-6">
             <label for="inputEmail4" class="form-label bg-light w-100 fw-bold">حالة طلب فتح الحساب</label>
             <p name="calc_g2_1">@php
@@ -72,8 +70,7 @@
             @endphp</p>
         </div>
 
-
-        {{-- 4 --}}
+        {{--  --}}
         <div class="col-sm-6 {{ $errors->has('CommercialRegister') ? 'border border-danger' : '' }}">
             <label for="" class="form-label bg-light w-100 fw-bold d-block">
                 {{ __('CommercialRegister', [], 'ar') }}
@@ -132,7 +129,7 @@
             @endphp
         </div>
 
-        {{-- 5  --}}
+        {{--   --}}
         <div class="col-sm-6 sejel">
             <label for="" class="form-label bg-light w-100 fw-bold d-block"> {{ __('CRExpiryDate', [], 'ar') }}
             </label>
@@ -259,7 +256,7 @@
             @endphp
         </div>
 
-        {{-- 7 --}}
+        {{--  --}}
         <div class="col-sm-6 sejel">
             <label for="inputEmail4" class="form-label bg-light w-100 fw-bold">حالة السجل التجاري</label>
             <p name="calc_g2_2"> @php
@@ -273,7 +270,7 @@
         </div>
 
 
-        {{-- 1 Ok  --}}
+        {{--   --}}
         <div class="col-sm-4">
             <label for="inputEmail4"
                 class="form-label bg-light w-100 w-100 fw-bold">{{ __('GovernmentTaxIdentifier', [], 'ar') }}
