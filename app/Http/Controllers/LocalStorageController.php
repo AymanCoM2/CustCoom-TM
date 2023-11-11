@@ -30,9 +30,8 @@ class LocalStorageController extends Controller
             // Remove Any Dashes From the Name 
 
             // Remove dashes, spaces, and plus signs
-            $fileName = str_replace(["-", " ", "+"], "", $fileName);
+            $fileName = str_replace(["-", " ", "+", "@", "#", "$", "%", "^", "&", "*"], "", $fileName);
             // Remove all non-alphanumeric characters
-            $fileName = preg_replace("/[^a-zA-Z0-9]/", "", $fileName);
             $mimeParts  = explode('/', $aPdfFile->getMimeType());
             $realExtension  = end($mimeParts);
             $newFileName  = time() . '--' . $fileName; // With timestamp
