@@ -1,5 +1,5 @@
 <script>
-    $('.unified_check_6').on("myCustomEvent change", function() {
+    $('.unified_check_6').on("change", function() {
         // Find the nearest radio button
         var nearestRadio = $(this).closest('.row').find('input[type="radio"]:checked');
         // Check if the nearest radio button's value is "موجود"
@@ -12,8 +12,8 @@
             // alert('The nearest radio button value is something else');
             $(this).closest('.col-sm-4').find('input[type="date"]').attr('required', false);
             $(this).closest('.col-sm-4').find('input[type="date"]').removeClass('border border-danger');
-            // $(this).closest('.col-sm-4').find('input[type="date"]').val('');
-            // // $(':input[name="OwnerIDExpiryDate_h"]').val('');
+            // $(this).closest('.col-sm-4').find('input[type="date"]').val(null);
+            // // $(':input[name="OwnerIDExpiryDate_h"]').val(null);
             // $(this).closest('.col-sm-4').find('input[type="date"]').prop('disabled', true);
         }
     });
@@ -29,8 +29,8 @@
         } else {
             $(':input[name="ExpiryDateNationalAddress"]').attr('required', false);
             $(':input[name="ExpiryDateNationalAddress"]').removeClass('border border-danger');
-            // $(':input[name="ExpiryDateNationalAddress"]').val('');
-            // $(':input[name="ExpiryDateNationalAddress_h"]').val('');
+            $(':input[name="ExpiryDateNationalAddress"]').val(null);
+            $(':input[name="ExpiryDateNationalAddress_h"]').val(null);
             // $(':input[name="ExpiryDateNationalAddress"]').prop('disabled', true);
         }
     });
@@ -38,7 +38,6 @@
     $(':input[name="ExpiryDateNationalAddress"]').on("myCustomEvent change", function() {
         firstCombination();
     });
-
     $(':input[name="ExpiryDateNationalAddress_h"]').on("myCustomEvent blur", function() {
         setTimeout(function() {
             firstCombination();
@@ -57,8 +56,8 @@
             $(':input[name="ExpiryDateNationalAddressReserveGuarantor"]').attr('required', false);
             $(':input[name="ExpiryDateNationalAddressReserveGuarantor"]').removeClass(
                 'border border-danger');
-            // $(':input[name="ExpiryDateNationalAddressReserveGuarantor"]').val('');
-            // $(':input[name="ExpiryDateNationalAddressReserveGuarantor_h"]').val('');
+            $(':input[name="ExpiryDateNationalAddressReserveGuarantor"]').val(null);
+            $(':input[name="ExpiryDateNationalAddressReserveGuarantor_h"]').val(null);
             // $(':input[name="ExpiryDateNationalAddressReserveGuarantor"]').prop('disabled', true);
         }
     });
@@ -66,7 +65,6 @@
     $(':input[name="ExpiryDateNationalAddressReserveGuarantor"]').on("myCustomEvent change", function() {
         secondCombination();
     });
-
     $(':input[name="ExpiryDateNationalAddressReserveGuarantor_h"]').on("myCustomEvent blur", function() {
         setTimeout(function() {
             secondCombination();
