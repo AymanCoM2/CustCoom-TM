@@ -51,7 +51,6 @@ class CustomersController extends Controller
         ELSE T0.CreditLine
         END AS 'Avaliable CreditLine' , T0.Free_Text, T0.GroupNum
 
-
         FROM (TM.DBO.OCRD T0 LEFT JOIN TM.DBO.OCRG C1 ON T0.GroupCode = C1.GroupCode)
         LEFT JOIN CustDue T1 ON T1.CCode = T0.CardCode
         LEFT JOIN OCTG C0 ON T0.GroupNum = C0.GroupNum
