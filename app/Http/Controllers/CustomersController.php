@@ -22,9 +22,6 @@ class CustomersController extends Controller
 
     public function customersTablePost(Request $request)
     {
-        // $sap_Query = "
-        // SELECT * from LB_CustomerData
-        // ";
         $sap_Query = "
         --CREATE VIEW CustData AS 
         WITH 
@@ -68,19 +65,12 @@ class CustomersController extends Controller
         FROM R";
 
         if ($request->ajax()) {
-            // $osInfo = php_uname();
-            // $firstWord = strtok($osInfo, ' ');
-            // if (strcasecmp($firstWord, 'Windows') === 0) {
-            //     $data = DB::connection('sqlsrv')->select($sap_Query);
-            // } 
-            // else {
             $serverName = "10.10.10.100";
             $databaseName = "TM";
             $uid = "ayman";
             $pwd = "admin@1234";
             $options = [
                 PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
-                // PDO::SQLSRV_ATTR_FETCHES_NUMERIC_TYPE => true,
                 "TrustServerCertificate" => true,
             ];
             $conn = new PDO("sqlsrv:server = $serverName; Database = $databaseName;", $uid, $pwd, $options);
@@ -88,7 +78,6 @@ class CustomersController extends Controller
             while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
                 $data[] = $row; // Append each row to the $data array
             }
-            // }
 
             $firstElement = $data[0];
             $allKeys = [];
@@ -98,22 +87,14 @@ class CustomersController extends Controller
                 $tdContent .= "<td>$key</td>";
             }
             $allCodes  = []; // ALL OUT CODES 
-            // if (strcasecmp($firstWord, 'Windows') === 0) {
-            //     foreach ($data as $index => $singleData) {
-            //         array_push($allCodes, $singleData->CardCode); //! important
-            //     }
-            // } else {
             foreach ($data as $index => $singleData) {
                 array_push($allCodes, $singleData['CardCode']); //! important
             }
-            // }
             $custTableCodes = DB::table('customers')->pluck('CardCode')->toArray(); // ALL IN CODES
-            // NOW delete ALL FROM card_code table and RE-FILL , reset also AUTO increment from 1 
             DB::table('card_codes')->delete();
             $tableName = 'card_codes';
             $resetAutoIncrementSql = "ALTER TABLE {$tableName} AUTO_INCREMENT = 1";
             DB::statement($resetAutoIncrementSql);
-
             foreach ($allCodes as $code) {
                 if (!in_array($code, $custTableCodes)) {
                     $cc = new CardCode();
@@ -127,9 +108,6 @@ class CustomersController extends Controller
 
     public static function getSingleCustomerData($querySingleCode)
     {
-        // $sap_Query = "
-        // SELECT * from LB_CustomerData
-        // ";
         $sap_Query = "
         --CREATE VIEW CustData AS 
         WITH 
@@ -172,19 +150,12 @@ class CustomersController extends Controller
             ELSE N'غير متجاوز الفترة الائتمانية'
             END AS 'DueAmount State'
         FROM R";
-        // $osInfo = php_uname();
-        // $firstWord = strtok($osInfo, ' ');
-
-        // if (strcasecmp($firstWord, 'Windows') === 0) {
-        //     $data = DB::connection('sqlsrv')->select($sap_Query);
-        // } else {
         $serverName = "10.10.10.100";
         $databaseName = "TM";
         $uid = "ayman";
         $pwd = "admin@1234";
         $options = [
             PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
-            // PDO::SQLSRV_ATTR_FETCHES_NUMERIC_TYPE => true,
             "TrustServerCertificate" => true,
         ];
         $conn = new PDO("sqlsrv:server = $serverName; Database = $databaseName;", $uid, $pwd, $options);
@@ -192,7 +163,6 @@ class CustomersController extends Controller
         while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
             $data[] = $row; // Append each row to the $data array
         }
-        // }
 
         foreach ($data as $datium) {
             foreach ($datium as $key => $value) {
@@ -206,11 +176,8 @@ class CustomersController extends Controller
 
     public function showCustomerDataForm($cardCode)
     {
-        // FORM 
         $customerSapData  = (array) self::getSingleCustomerData($cardCode);
-        // dd($customerSapData); // Data From SAP OK 
         $customerMySqlData  = Customers::where('CardCode', $cardCode)->first();
-        // dd($customerMySqlData); // Data From MySQL Ok 
         if (!$customerMySqlData) {
             $newMySqlCustomer  = new Customers();
             $newMySqlCustomer->CardCode = $cardCode;
@@ -224,30 +191,22 @@ class CustomersController extends Controller
     public function showCustomerDataFormG($cardCode)
     {
         $posY = 0;
-        // FORM 
         $customerSapData  = (array) self::getSingleCustomerData($cardCode);
-        // dd($customerSapData); // Data From SAP OK 
         $customerMySqlData  = Customers::where('CardCode', $cardCode)->first();
-        // dd($customerMySqlData); // Data From MySQL Ok 
         if (!$customerMySqlData) {
             $newMySqlCustomer  = new Customers();
             $newMySqlCustomer->CardCode = $cardCode;
             $newMySqlCustomer->save();
             $customerMySqlData = $newMySqlCustomer;
-
             session()->flash('init', 'This User Record is Initiated For the First Time , All Data Are From Sap Only');
         }
-
         return view('pages.customer-form-view-g', compact(['customerSapData', 'customerMySqlData', 'cardCode', 'posY']));
     }
 
     public function showCustomerDataFormGWhatIf($cardCode)
     {
-        // FORM 
         $customerSapData  = self::getSingleCustomerData($cardCode);
-        // dd($customerSapData); // Data From SAP OK 
         $customerMySqlData  = Customers::where('CardCode', $cardCode)->first();
-        // dd($customerMySqlData); // Data From MySQL Ok 
         if (!$customerMySqlData) {
             $newMySqlCustomer  = new Customers();
             $newMySqlCustomer->CardCode = $cardCode;
@@ -255,7 +214,6 @@ class CustomersController extends Controller
             $customerMySqlData = $newMySqlCustomer;
             session()->flash('init', 'This User Record is Initiated For the First Time , All Data Are From Sap Only');
         }
-
         return view('pages.what-if-form', compact(['customerSapData', 'customerMySqlData', 'cardCode']));
     }
 
@@ -276,7 +234,6 @@ class CustomersController extends Controller
     public function handleCustomersForm(FormGroupingRequest $request)
     {
         $filteredFields = array_filter($request->all());
-        // dd($filteredFields);
         foreach ($filteredFields as $key => $value) {
             if ($key == 'id' || $key == '_token' || $key == 'CardCode') {
                 // DO NOTTHING  ; 

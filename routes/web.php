@@ -24,6 +24,8 @@ Route::group(['middleware' => ['auth']], __DIR__ . '/what-if-approve.php');
 Route::group(['middleware' => ['auth']], __DIR__ . '/singleCustCode.php');
 Route::group(['middleware' => ['auth']], __DIR__ . '/importingRadios.php');
 Route::group(['middleware' => ['auth']], __DIR__ . '/reports.php');
+Route::group(['middleware' => ['auth']], __DIR__ . '/backup.php');
+Route::group(['middleware' => ['auth']], __DIR__ . '/editorNotifications.php');
 
 Route::get('/new-codes', function (Request $request) {
     $searchTerm = $request->query('search');
@@ -34,7 +36,6 @@ Route::get('/new-codes', function (Request $request) {
     $allNewCardCodes = $query->paginate(60);
     // Append the search term to the pagination links
     $allNewCardCodes->appends(['search' => $searchTerm]);
-
     return view('pages.new-codes', compact('allNewCardCodes'));
 })->name('new-codes-get');
 
@@ -76,43 +77,4 @@ Route::get('/load-customers-files', function () {
         $userDocument->path = $file;  // ^ Path = $file 
         $userDocument->save();
     }
-});
-
-
-Route::get('/fix-k', function () {
-    // Get all Models that Have k0018 and Make them K capital 
-    //  and then Close it 
-    $cc = CardCode::where('cc', 'k0018')->get();
-    $logs = ComLog::where('userCardCode', 'k0018')->get();
-    $customers = Customers::where('CardCode', 'k0018')->get();
-    $editGraves = EditGrave::where('cardCode', 'k0018')->get();
-    $editHistory = EditHistory::where('cardCode', 'k0018')->get();
-    $tempDispproves = TempDisapprove::where('cardCode', 'k0018')->get();
-
-    // Make Get and Loop For them All and Them KKK
-    foreach ($cc as  $object) {
-        $object->cc = 'K0018';
-        $object->save();
-    }
-    foreach ($logs as  $object) {
-        $object->userCardCode = 'K0018';
-        $object->save();
-    }
-    foreach ($customers as  $object) {
-        $object->CardCode = 'K0018';
-        $object->save();
-    }
-    foreach ($editGraves as  $object) {
-        $object->cardCode = 'K0018';
-        $object->save();
-    }
-    foreach ($editHistory as  $object) {
-        $object->cardCode = 'K0018';
-        $object->save();
-    }
-    foreach ($tempDispproves as  $object) {
-        $object->cardCode = 'K0018';
-        $object->save();
-    }
-    dd("DONE");
 });

@@ -22,7 +22,7 @@ class ImportingController extends Controller
             foreach ($collection as $key => $value) {
             }
             array_push($data, [
-                //remiving the Dummy Coulmn 
+                //remiving the Dummy Column
                 'CardCode' => $collection['رمز شريك الأعمال'],
                 'CustomerName' => $collection['اسم المالك'],
                 'CRExpiryDate' => $collection["تاريخ انتهاء السجل التجارى"],

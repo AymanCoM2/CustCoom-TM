@@ -27,8 +27,6 @@ class LocalStorageController extends Controller
         foreach ($allPdfFiles as $aPdfFile) {
             $aDocument  = new Documents();
             $fileName  = $aPdfFile->getClientOriginalName();
-            // Remove Any Dashes From the Name 
-
             // Remove dashes, spaces, and plus signs
             $fileName = str_replace(["-", "+", "@", "#", "$", "%", "^", "&", "*"], "", $fileName);
             // Remove all non-alphanumeric characters
@@ -55,7 +53,6 @@ class LocalStorageController extends Controller
     {
         $selectedCustomer   = Customers::where('CardCode', $cardCode)->first();
         $customerId  = $selectedCustomer->id;
-
         $arcihedFiles =   Documents::onlyTrashed()
             ->where('customer_id', $customerId)
             ->get();
