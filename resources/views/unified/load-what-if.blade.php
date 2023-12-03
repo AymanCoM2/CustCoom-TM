@@ -1,8 +1,7 @@
 <script>
-    // 1
+    // 1 , Just Show Toastr and Call the Function to Call the api 
     let userCardCode = $('#what_if_card_code').val();
     $('#load_what_if').on('click', function() {
-        // alert('Button is Clicked ' + userCardCode);
         Toastify({
             text: "Customer is Loaded :" + userCardCode,
             className: "info",
@@ -13,7 +12,7 @@
         loadDataFromLink(userCardCode);
     });
 
-    // 2 
+    // 2 ,  Make the Request and then Get the Data From the API 
     function loadDataFromLink(userCardCode) {
         $.ajax({
             type: 'GET',
@@ -24,6 +23,7 @@
             success: function(data) {
                 // console.log('Result  : ' + data.result);
                 fillTheForm(data.result);
+                // alert('Button is Clicked ' + userCardCode);
             },
             error: function(err) {
                 console.log('Error : ' + err);
@@ -62,40 +62,14 @@
                 });
                 el.dispatchEvent(event);
             }
-            if (element.fieldName == "ExpirydateCommlicense") {
-                let x = document.getElementById("ExpirydateCommlicense");
-                let y = document.getElementsByName("ExpirydateCommlicense_h")[0];
-                console.log("The Value = " + x.value)
-                let zz = y.value;
-                if (zz) {
-                    const apiEndpoint = `http://api.aladhan.com/v1/hToG/${zz}`;
-                    fetch(apiEndpoint)
-                        .then(response => response.json())
-                        .then(data => {
-                            const convertedDate = data.data.gregorian.date;
-                            const dateParts = convertedDate.split("-");
-                            const year = dateParts[0];
-                            const month = dateParts[1];
-                            const day = dateParts[2];
-                            const forma = `${day}-${month}-${year}`;
-                            x.value = forma;
-                        })
-                        .catch(error => {
-                            console.error("Error fetching API data:", error);
-                        });
-                } else {
-                    y.value = "";
-                }
-            }
-            // }
         });
-        // Those events Will not be disached HERE BUT will be dispached Upon clicking alert 
+        // Those events Will not be dispached HERE BUT will be dispached Upon clicking alert 
         const radioButtons = document.querySelectorAll('input[type="radio"]');
         const checkboxes = document.querySelectorAll('input[type="checkbox"]');
         const inputElements = document.querySelectorAll('input');
 
         [...radioButtons, ...checkboxes, ...inputElements].forEach(function(element) {
-            element.dispatchEvent(customEvent);
+            element.dispatchEvent(change);
         });
         // Those events Will not be disached HERE BUT will be dispached Upon clicking alert 
     } // End Of fillTheForm

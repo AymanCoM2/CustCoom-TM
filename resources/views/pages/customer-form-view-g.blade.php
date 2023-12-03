@@ -1,7 +1,7 @@
 @php
-    if ($posY != 0) {
-        dd($posY);
-    }
+    // if ($posY != 0) {
+    //     dd($posY);
+    // }
     $oneDay = 60 * 60 * 24;
     $oneYear = 365 * $oneDay;
     $today = date('Y-m-d ');
@@ -69,7 +69,7 @@
             {{--  --}}
         @endif
     @endif
-    <form action="{{ route('approve') }}" method='POST' class='' id='logout-form'>
+    <form action="{{ route('approve') }}" method='POST' id='logout-form'>
         @csrf
         <input type="hidden" value="" id="approval" name="approveFieldId">
         @if (session()->get('posY'))
@@ -141,11 +141,11 @@
     <script src="{{ asset('js/bootstrap.bundle.js') }}"></script>
     <script>
         // ! New Custom Event to do here  
-        const customEvent = new CustomEvent('myCustomEvent', {
-            detail: {
-                someData: 'Hello, custom event!'
-            }
-        });
+        // const customEvent = new CustomEvent('myCustomEvent', {
+        //     detail: {
+        //         someData: 'Hello, custom event!'
+        //     }
+        // });
 
         // // Those events Will not be disached HERE BUT will be dispached Upon clicking alert 
         // const radioButtons = document.querySelectorAll('input[type="radio"]');
@@ -162,13 +162,11 @@
             console.log($('#scrollY').val());
             $(window).scrollTop($('#scrollY').val());
 
-
             $('#groupFormUpdate').submit(function(e) {
                 $('#groupFormUpdate').addClass('d-none');
                 $('#central').removeClass('d-none');
                 $('#loadingSpinner').removeClass('d-none');
             });
-
 
             $('#all-approve').submit(function(e) {
                 $('#groupFormUpdate').addClass('d-none');
@@ -302,6 +300,58 @@
                         hijriDateObject.value = ""; // Reset the value if the date is cleared
                     }
                 });
+
+                gregoryDateObject.addEventListener("myCustomEvent", function() {
+                    const selectedDate = gregoryDateObject.value;
+                    if (selectedDate) {
+                        // console.log(selectedDate);
+                        const dateParts = selectedDate.split("-");
+                        const year = dateParts[0];
+                        const month = dateParts[1];
+                        const day = dateParts[2];
+                        const forma = `${day}-${month}-${year}`;
+                        // console.log(forma);
+                        const apiEndpoint = `http://api.aladhan.com/v1/gToH/${forma}`;
+                        // Make an API call using AJAX
+                        fetch(apiEndpoint)
+                            .then(response => response.json())
+                            .then(data => {
+                                const convertedDate = data.data.hijri.date;
+                                hijriDateObject.value = convertedDate;
+                            })
+                            .catch(error => {
+                                console.error("Error fetching API data:", error);
+                            });
+                    } else {
+                        hijriDateObject.value = ""; // Reset the value if the date is cleared
+                    }
+                });
+
+                hijriDateObject.addEventListener("myCustomEvent", function() {
+                    const selectedDate = hijriDateObject.value;
+                    if (selectedDate) {
+                        // console.log(selectedDate);
+                        const apiEndpoint = `http://api.aladhan.com/v1/hToG/${selectedDate}`;
+                        // Make an API call using AJAX
+                        fetch(apiEndpoint)
+                            .then(response => response.json())
+                            .then(data => {
+                                const convertedDate = data.data.gregorian.date;
+                                const dateParts = convertedDate.split("-");
+                                const year = dateParts[0];
+                                const month = dateParts[1];
+                                const day = dateParts[2];
+                                const forma = `${day}-${month}-${year}`;
+                                // console.log(forma);
+                                gregoryDateObject.value = forma;
+                            })
+                            .catch(error => {
+                                console.error("Error fetching API data:", error);
+                            });
+                    } else {
+                        hijriDateObject.value = ""; // Reset the value if the date is cleared
+                    }
+                });
             }
             const CRExpiryDateInput = document.getElementsByName("CRExpiryDate")[0];
             const CRExpiryDate_hInput = document.getElementsByName("CRExpiryDate_h")[0];
@@ -339,7 +389,7 @@
     </script>
 
     @include('unified.uno')
-    @include('unified.HijriLoad')
+    {{-- @include('unified.HijriLoad') --}}
     @if (Auth::user()->isSuperUser == 3)
         @include('unified.viewer-js')
     @endif

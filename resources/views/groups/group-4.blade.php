@@ -65,7 +65,7 @@
         {{-- 3 --}}
         <div
             class="sanad-g col-sm-6 {{ $errors->has('CreationDateOrderOrException') && old('OrderBond') == 'موجود' ? 'border border-danger' : '' }} {{ $errors->has('CreationDateOrderOrException') && old('OrderBond') == 'مستثنى ' ? 'border border-danger' : '' }} ">
-            <label for="" class="form-label bg-light w-100 fw-bold d-block">
+            <label class="form-label bg-light w-100 fw-bold d-block">
                 {{ __('CreationDateOrderOrException', [], 'ar') }}
             </label>
             @if (Auth::user()->isSuperUser == 1)
