@@ -63,10 +63,8 @@
                 Docs(Same page)</a>
             {{--  --}}
             {{--  --}}
-            {{-- <div class="row"> --}}
             <button id="load_what_if" class="">Load Data Of What-If Into Form</button>
             <input type="hidden" id="what_if_card_code" value="{{ $cardCode }}">
-            {{-- </div> --}}
             {{--  --}}
             {{--  --}}
         @endif
