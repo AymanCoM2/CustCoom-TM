@@ -51,7 +51,6 @@
             </div>
         @endif
 
-
         @if ((bool) $r)
             <h3>Check Profile [If Approved] :</h3>
 
@@ -59,6 +58,11 @@
                 id="iframeLink">Check Link(Right
                 Side)</a>
             <a class="btn rounded-pill p-1 btn-warning" href="{{ route('customer-drive', $cardCode) }}"
+                id="iframeLink3">Check
+                Docs(Same page)</a>
+
+
+            <a class="btn rounded-pill p-1 btn-primary" href="{{ route('customer-drive', $cardCode) }}"
                 id="iframeLink3">Check
                 Docs(Same page)</a>
             {{--  --}}
