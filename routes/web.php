@@ -21,7 +21,6 @@ Route::group(['middleware' => ['auth']], __DIR__ . '/customerData.php');
 Route::group(['middleware' => ['auth']], __DIR__ . '/columnOptions.php');
 Route::group(['middleware' => ['auth']], __DIR__ . '/ajax-routes.php');
 Route::group(['middleware' => ['auth']], __DIR__ . '/what-if-approve.php');
-Route::group(['middleware' => ['auth']], __DIR__ . '/singleCustCode.php');
 Route::group(['middleware' => ['auth']], __DIR__ . '/importingRadios.php');
 Route::group(['middleware' => ['auth']], __DIR__ . '/reports.php');
 Route::group(['middleware' => ['auth']], __DIR__ . '/backup.php');
