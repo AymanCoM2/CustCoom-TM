@@ -1,37 +1,13 @@
 <div class="container-fluid">
     <div class="row">
 
+        {{-- 1 --}}
         <div class="col-sm-4 {{ $errors->has('OwnerImg') ? 'border border-danger' : '' }}">
             <label for="" class="form-label bg-light fw-bold d-block"> {{ __('OwnerImg', [], 'ar') }} </label>
+            @if (Auth::user()->isSuperUser == 1)
+                @include('single.q-mark', ['r' => $r, 'fdname' => 'OwnerImg'])
+            @endif
             @php
-                if (Auth::user()->isSuperUser == 1):
-                    foreach ($r as $singleEditArray):
-                        if ($singleEditArray['fieldName'] == 'OwnerImg'):
-                            $data = 'Old Value : ' . $singleEditArray['oldValue'] . '<br>New Value:' . $singleEditArray['newValue'];
-                            $data2 = '<br>Editor Name:' . App\Models\User::find($singleEditArray)->first()->name;
-                            $fullData = $data . $data2;
-                            // dd($fullData)  ;
-
-                            echo "<a class=\"al\" href=''
-                                       onclick=\"event.preventDefault();
-                                                     document.getElementById('approval').setAttribute('value'" .
-                                ',' .
-                                $singleEditArray['id'] .
-                                ");
-                                                     document.getElementById('logout-form').submit();\">";
-                            echo 'Dis-Approve';
-                            echo '</a>';
-                            echo "
-                                            <div class='col-6'><span class='d-inline-block' tabindex='0' data-toggle='tooltip'
-                                        title=\"$fullData\" data-bs-html='true' >
-                                        <button class='btn btn-danger w-50 p-0 m-2' style='pointer-events: none;'
-                                            type='button' disabled><i class='bx bx-question-mark'></i></button>
-                                    </span>
-                                </div>
-                                ";
-                        endif;
-                    endforeach;
-                endif;
                 if (in_array('OwnerImg', $allDDLColumn)):
                     echo '<div class="form-check form-check-inline">';
                     $allOptions = App\Models\ColumnOption::where('colName', 'OwnerImg')->get();
@@ -57,10 +33,14 @@
             @endphp
         </div>
 
+        {{-- 2 --}}
         <div class="col-sm-4">
             <label for="" class="form-label bg-light fw-bold d-block"> {{ __('OwnerIDExpiryDate', [], 'ar') }}
                 <input type="checkbox" class="unified_check">
             </label>
+            @if (Auth::user()->isSuperUser == 1)
+                @include('single.q-mark', ['r' => $r, 'fdname' => 'OwnerIDExpiryDate'])
+            @endif
             @php
                 $uxDate = strtotime($customerMySqlData->OwnerIDExpiryDate);
                 $formatted = date('d-m-Y', $uxDate);
@@ -69,35 +49,6 @@
                 $response = Http::get($baseLink);
                 $resBody = $response->json();
                 $hijriData = $resBody['data']['hijri']['date']; // 8-14-2023 = GET Hijri ,DD-MM-YYYY
-                // dd($hijriData);
-                if (Auth::user()->isSuperUser == 1):
-                    foreach ($r as $singleEditArray):
-                        if ($singleEditArray['fieldName'] == 'OwnerIDExpiryDate'):
-                            $data = 'Old Value : ' . $singleEditArray['oldValue'] . '<br>New Value:' . $singleEditArray['newValue'];
-                            $data2 = '<br>Editor Name:' . App\Models\User::find($singleEditArray)->first()->name;
-                            $fullData = $data . $data2;
-                            // dd($fullData)  ;
-
-                            echo "<a class=\"al\" href=''
-                                       onclick=\"event.preventDefault();
-                                                     document.getElementById('approval').setAttribute('value'" .
-                                ',' .
-                                $singleEditArray['id'] .
-                                ");
-                                                     document.getElementById('logout-form').submit();\">";
-                            echo 'Dis-Approve';
-                            echo '</a>';
-                            echo "
-                                            <div class='col-6'><span class='d-inline-block' tabindex='0' data-toggle='tooltip'
-                                        title=\"$fullData\" data-bs-html='true' >
-                                        <button class='btn btn-danger w-50 p-0 m-2' style='pointer-events: none;'
-                                            type='button' disabled><i class='bx bx-question-mark'></i></button>
-                                    </span>
-                                </div>
-                                ";
-                        endif;
-                    endforeach;
-                endif;
                 if (in_array('OwnerIDExpiryDate', $allDDLColumn)):
                     echo '<div class="form-check form-check-inline">';
                     $allOptions = App\Models\ColumnOption::where('colName', 'OwnerIDExpiryDate')->get();
@@ -125,6 +76,8 @@
             @endphp
         </div>
 
+
+        {{-- 3 --}}
         <div class="col-sm-4">
             <label for="inputEmail4" class="form-label bg-light fw-bold"> حالة هوية المالك</label>
             <p name='hala_1'> @php
@@ -141,35 +94,10 @@
             class="sanad-g col-sm-4 {{ $errors->has('ObSupporterIdImg') && old('OrderBond') == 'موجود' ? 'border border-danger' : '' }}">
             <label for="" class="form-label bg-light fw-bold d-block"> {{ __('ObSupporterIdImg', [], 'ar') }}
             </label>
+            @if (Auth::user()->isSuperUser == 1)
+                @include('single.q-mark', ['r' => $r, 'fdname' => 'ObSupporterIdImg'])
+            @endif
             @php
-                if (Auth::user()->isSuperUser == 1):
-                    foreach ($r as $singleEditArray):
-                        if ($singleEditArray['fieldName'] == 'ObSupporterIdImg'):
-                            $data = 'Old Value : ' . $singleEditArray['oldValue'] . '<br>New Value:' . $singleEditArray['newValue'];
-                            $data2 = '<br>Editor Name:' . App\Models\User::find($singleEditArray)->first()->name;
-                            $fullData = $data . $data2;
-                            // dd($fullData)  ;
-
-                            echo "<a class=\"al\" href=''
-                                       onclick=\"event.preventDefault();
-                                                     document.getElementById('approval').setAttribute('value'" .
-                                ',' .
-                                $singleEditArray['id'] .
-                                ");
-                                                     document.getElementById('logout-form').submit();\">";
-                            echo 'Dis-Approve';
-                            echo '</a>';
-                            echo "
-                                            <div class='col-6'><span class='d-inline-block' tabindex='0' data-toggle='tooltip'
-                                        title=\"$fullData\" data-bs-html='true' >
-                                        <button class='btn btn-danger w-50 p-0 m-2' style='pointer-events: none;'
-                                            type='button' disabled><i class='bx bx-question-mark'></i></button>
-                                    </span>
-                                </div>
-                                ";
-                        endif;
-                    endforeach;
-                endif;
                 if (in_array('ObSupporterIdImg', $allDDLColumn)):
                     echo '<div class="form-check form-check-inline">';
                     $allOptions = App\Models\ColumnOption::where('colName', 'ObSupporterIdImg')->get();
@@ -195,11 +123,15 @@
             @endphp
         </div>
 
+        {{-- 5 --}}
         <div class="sanad-g col-sm-4">
             <label for="" class="form-label bg-light fw-bold d-block">
                 {{ __('ExpiryDateGuarantorPromissoryNote', [], 'ar') }}
                 <input type="checkbox" class="unified_check">
             </label>
+            @if (Auth::user()->isSuperUser == 1)
+                @include('single.q-mark', ['r' => $r, 'fdname' => 'ExpiryDateGuarantorPromissoryNote'])
+            @endif
             @php
                 $uxDate = strtotime($customerMySqlData->ExpiryDateGuarantorPromissoryNote);
                 $formatted = date('d-m-Y', $uxDate);
@@ -208,35 +140,6 @@
                 $response = Http::get($baseLink);
                 $resBody = $response->json();
                 $hijriData = $resBody['data']['hijri']['date']; // 8-14-2023 = GET Hijri ,DD-MM-YYYY
-                // dd($hijriData);
-                if (Auth::user()->isSuperUser == 1):
-                    foreach ($r as $singleEditArray):
-                        if ($singleEditArray['fieldName'] == 'ExpiryDateGuarantorPromissoryNote'):
-                            $data = 'Old Value : ' . $singleEditArray['oldValue'] . '<br>New Value:' . $singleEditArray['newValue'];
-                            $data2 = '<br>Editor Name:' . App\Models\User::find($singleEditArray)->first()->name;
-                            $fullData = $data . $data2;
-                            // dd($fullData)  ;
-
-                            echo "<a class=\"al\" href=''
-                                       onclick=\"event.preventDefault();
-                                                     document.getElementById('approval').setAttribute('value'" .
-                                ',' .
-                                $singleEditArray['id'] .
-                                ");
-                                                     document.getElementById('logout-form').submit();\">";
-                            echo 'Dis-Approve';
-                            echo '</a>';
-                            echo "
-                                            <div class='col-6'><span class='d-inline-block' tabindex='0' data-toggle='tooltip'
-                                        title=\"$fullData\" data-bs-html='true' >
-                                        <button class='btn btn-danger w-50 p-0 m-2' style='pointer-events: none;'
-                                            type='button' disabled><i class='bx bx-question-mark'></i></button>
-                                    </span>
-                                </div>
-                                ";
-                        endif;
-                    endforeach;
-                endif;
                 if (in_array('ExpiryDateGuarantorPromissoryNote', $allDDLColumn)):
                     echo '<div class="form-check form-check-inline">';
                     $allOptions = App\Models\ColumnOption::where('colName', 'ExpiryDateGuarantorPromissoryNote')->get();
@@ -265,6 +168,7 @@
             @endphp
         </div>
 
+        {{-- 6 --}}
         <div class="sanad-g col-sm-4">
             <label for="inputEmail4" class="form-label bg-light fw-bold"> حالة صورة عن هوية الضامن الاحتياطي في السند
                 لأمر</label>
@@ -282,36 +186,10 @@
             class="sanad-g col-sm-4 {{ $errors->has('ObFrstSeeIdImg') && old('OrderBond') == 'موجود' ? 'border border-danger' : '' }}">
             <label for="" class="form-label bg-light fw-bold d-block"> {{ __('ObFrstSeeIdImg', [], 'ar') }}
             </label>
-
+            @if (Auth::user()->isSuperUser == 1)
+                @include('single.q-mark', ['r' => $r, 'fdname' => 'ObFrstSeeIdImg'])
+            @endif
             @php
-                if (Auth::user()->isSuperUser == 1):
-                    foreach ($r as $singleEditArray):
-                        if ($singleEditArray['fieldName'] == 'ObFrstSeeIdImg'):
-                            $data = 'Old Value : ' . $singleEditArray['oldValue'] . '<br>New Value:' . $singleEditArray['newValue'];
-                            $data2 = '<br>Editor Name:' . App\Models\User::find($singleEditArray)->first()->name;
-                            $fullData = $data . $data2;
-                            // dd($fullData)  ;
-
-                            echo "<a class=\"al\" href=''
-                                       onclick=\"event.preventDefault();
-                                                     document.getElementById('approval').setAttribute('value'" .
-                                ',' .
-                                $singleEditArray['id'] .
-                                ");
-                                                     document.getElementById('logout-form').submit();\">";
-                            echo 'Dis-Approve';
-                            echo '</a>';
-                            echo "
-                                            <div class='col-6'><span class='d-inline-block' tabindex='0' data-toggle='tooltip'
-                                        title=\"$fullData\" data-bs-html='true' >
-                                        <button class='btn btn-danger w-50 p-0 m-2' style='pointer-events: none;'
-                                            type='button' disabled><i class='bx bx-question-mark'></i></button>
-                                    </span>
-                                </div>
-                                ";
-                        endif;
-                    endforeach;
-                endif;
                 if (in_array('ObFrstSeeIdImg', $allDDLColumn)):
                     echo '<div class="form-check form-check-inline">';
                     $allOptions = App\Models\ColumnOption::where('colName', 'ObFrstSeeIdImg')->get();
@@ -337,11 +215,15 @@
             @endphp
         </div>
 
+        {{-- 8 --}}
         <div class="sanad-g col-sm-4">
             <label for="" class="form-label bg-light fw-bold d-block">
                 {{ __('ExpirationDateFirstWitness', [], 'ar') }}
                 <input type="checkbox" class="unified_check">
             </label>
+            @if (Auth::user()->isSuperUser == 1)
+                @include('single.q-mark', ['r' => $r, 'fdname' => 'ExpirationDateFirstWitness'])
+            @endif
             @php
                 $uxDate = strtotime($customerMySqlData->ExpirationDateFirstWitness);
                 $formatted = date('d-m-Y', $uxDate);
@@ -350,34 +232,6 @@
                 $response = Http::get($baseLink);
                 $resBody = $response->json();
                 $hijriData = $resBody['data']['hijri']['date']; // 8-14-2023 = GET Hijri ,DD-MM-YYYY
-                if (Auth::user()->isSuperUser == 1):
-                    foreach ($r as $singleEditArray):
-                        if ($singleEditArray['fieldName'] == 'ExpirationDateFirstWitness'):
-                            $data = 'Old Value : ' . $singleEditArray['oldValue'] . '<br>New Value:' . $singleEditArray['newValue'];
-                            $data2 = '<br>Editor Name:' . App\Models\User::find($singleEditArray)->first()->name;
-                            $fullData = $data . $data2;
-                            // dd($fullData)  ;
-
-                            echo "<a class=\"al\" href=''
-                                       onclick=\"event.preventDefault();
-                                                     document.getElementById('approval').setAttribute('value'" .
-                                ',' .
-                                $singleEditArray['id'] .
-                                ");
-                                                     document.getElementById('logout-form').submit();\">";
-                            echo 'Dis-Approve';
-                            echo '</a>';
-                            echo "
-                                            <div class='col-6'><span class='d-inline-block' tabindex='0' data-toggle='tooltip'
-                                        title=\"$fullData\" data-bs-html='true' >
-                                        <button class='btn btn-danger w-50 p-0 m-2' style='pointer-events: none;'
-                                            type='button' disabled><i class='bx bx-question-mark'></i></button>
-                                    </span>
-                                </div>
-                                ";
-                        endif;
-                    endforeach;
-                endif;
                 if (in_array('ExpirationDateFirstWitness', $allDDLColumn)):
                     echo '<div class="form-check form-check-inline">';
                     $allOptions = App\Models\ColumnOption::where('colName', 'ExpirationDateFirstWitness')->get();
@@ -405,6 +259,8 @@
             @endphp
         </div>
 
+
+        {{-- 9 --}}
         <div class="sanad-g col-sm-4">
             <label for="inputEmail4" class="form-label bg-light fw-bold"> حالة هوية الشاهد الاول في السند الامر</label>
             <p name="hala_3"> @php
@@ -416,41 +272,16 @@
             @endphp</p>
         </div>
 
+
         {{-- 10 --}}
         <div
             class="sanad-g col-sm-4 {{ $errors->has('ObScndSeeIdImg') && old('OrderBond') == 'موجود' ? 'border border-danger' : '' }}">
             <label for="" class="form-label bg-light fw-bold d-block"> {{ __('ObScndSeeIdImg', [], 'ar') }}
             </label>
-
+            @if (Auth::user()->isSuperUser == 1)
+                @include('single.q-mark', ['r' => $r, 'fdname' => 'ObScndSeeIdImg'])
+            @endif
             @php
-                if (Auth::user()->isSuperUser == 1):
-                    foreach ($r as $singleEditArray):
-                        if ($singleEditArray['fieldName'] == 'ObScndSeeIdImg'):
-                            $data = 'Old Value : ' . $singleEditArray['oldValue'] . '<br>New Value:' . $singleEditArray['newValue'];
-                            $data2 = '<br>Editor Name:' . App\Models\User::find($singleEditArray)->first()->name;
-                            $fullData = $data . $data2;
-                            // dd($fullData)  ;
-
-                            echo "<a class=\"al\" href=''
-                                       onclick=\"event.preventDefault();
-                                                     document.getElementById('approval').setAttribute('value'" .
-                                ',' .
-                                $singleEditArray['id'] .
-                                ");
-                                                     document.getElementById('logout-form').submit();\">";
-                            echo 'Dis-Approve';
-                            echo '</a>';
-                            echo "
-                                            <div class='col-6'><span class='d-inline-block' tabindex='0' data-toggle='tooltip'
-                                        title=\"$fullData\" data-bs-html='true' >
-                                        <button class='btn btn-danger w-50 p-0 m-2' style='pointer-events: none;'
-                                            type='button' disabled><i class='bx bx-question-mark'></i></button>
-                                    </span>
-                                </div>
-                                ";
-                        endif;
-                    endforeach;
-                endif;
                 if (in_array('ObScndSeeIdImg', $allDDLColumn)):
                     echo '<div class="form-check form-check-inline">';
                     $allOptions = App\Models\ColumnOption::where('colName', 'ObScndSeeIdImg')->get();
@@ -476,11 +307,16 @@
             @endphp
         </div>
 
+
+        {{-- 11 --}}
         <div class="sanad-g col-sm-4">
             <label for="" class="form-label bg-light fw-bold d-block">
                 {{ __('ExpiryDateSecondWitness', [], 'ar') }}
                 <input type="checkbox" class="unified_check">
             </label>
+            @if (Auth::user()->isSuperUser == 1)
+                @include('single.q-mark', ['r' => $r, 'fdname' => 'ExpiryDateSecondWitness'])
+            @endif
             @php
                 $uxDate = strtotime($customerMySqlData->ExpiryDateSecondWitness);
                 $formatted = date('d-m-Y', $uxDate);
@@ -489,34 +325,6 @@
                 $response = Http::get($baseLink);
                 $resBody = $response->json();
                 $hijriData = $resBody['data']['hijri']['date']; // 8-14-2023 = GET Hijri ,DD-MM-YYYY
-                if (Auth::user()->isSuperUser == 1):
-                    foreach ($r as $singleEditArray):
-                        if ($singleEditArray['fieldName'] == 'ExpiryDateSecondWitness'):
-                            $data = 'Old Value : ' . $singleEditArray['oldValue'] . '<br>New Value:' . $singleEditArray['newValue'];
-                            $data2 = '<br>Editor Name:' . App\Models\User::find($singleEditArray)->first()->name;
-                            $fullData = $data . $data2;
-                            // dd($fullData)  ;
-
-                            echo "<a class=\"al\" href=''
-                                       onclick=\"event.preventDefault();
-                                                     document.getElementById('approval').setAttribute('value'" .
-                                ',' .
-                                $singleEditArray['id'] .
-                                ");
-                                                     document.getElementById('logout-form').submit();\">";
-                            echo 'Dis-Approve';
-                            echo '</a>';
-                            echo "
-                                            <div class='col-6'><span class='d-inline-block' tabindex='0' data-toggle='tooltip'
-                                        title=\"$fullData\" data-bs-html='true' >
-                                        <button class='btn btn-danger w-50 p-0 m-2' style='pointer-events: none;'
-                                            type='button' disabled><i class='bx bx-question-mark'></i></button>
-                                    </span>
-                                </div>
-                                ";
-                        endif;
-                    endforeach;
-                endif;
                 if (in_array('ExpiryDateSecondWitness', $allDDLColumn)):
                     echo '<div class="form-check form-check-inline">';
                     $allOptions = App\Models\ColumnOption::where('colName', 'ExpiryDateSecondWitness')->get();
@@ -544,6 +352,7 @@
             @endphp
         </div>
 
+        {{-- 12 --}}
         <div class="sanad-g col-sm-4">
             <label for="inputEmail4" class="form-label bg-light fw-bold"> حالة هوية الشاهد الثانى في السند الامر</label>
             <p p name="hala_4"> @php

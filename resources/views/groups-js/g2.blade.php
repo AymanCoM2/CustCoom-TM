@@ -1,5 +1,4 @@
 <script>
-    // حالة طلب فتح الحساب
     var calcElement_1 = $('p[name="calc_g2_1"]');
     $(':input[name="OpenAccountPropose"]').on("myCustomEvent change", function() {
         if ($(this).is(':checked')) {
@@ -11,11 +10,9 @@
                 calcElement_1.text('يجب اعادة طلبه');
             }
         } else {
-            // console.log("Radio button unchecked.");
         }
     });
 
-    // /////////////////////// 2 
     $(':input[name="CommercialRegister"]').on("myCustomEvent change", function() {
         if ($(this).is(':checked')) {
             var selectedValue = $(this).val();
@@ -38,7 +35,6 @@
         }
     });
 
-    // /////////////////////// 3 
     $(':input[name="TaxCard"]').on("myCustomEvent change", function() {
         if ($(this).is(':checked')) {
             var selectedValue = $(this).val();

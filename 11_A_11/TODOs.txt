@@ -1,4 +1,3 @@
-=====================
 Fixing the GROUP 3 Date Field 
 Pivot Python On the Droplet 
 Delete The admin@admin From the Pivot 

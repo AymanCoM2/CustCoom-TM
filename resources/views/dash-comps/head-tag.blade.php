@@ -6,7 +6,7 @@
     <!----======== CSS ======== -->
     <link rel="stylesheet" href="{{ URL::asset('css/bootstrap5.css') }}">
     <link rel="stylesheet" href="{{ URL::asset('css/dash-style.css') }}" />
-    <link rel="stylesheet" href="{{URL::asset('css/css_jquery.dataTables.min.css')}}">
+    <link rel="stylesheet" href="{{ URL::asset('css/css_jquery.dataTables.min.css') }}">
     {{-- <link rel="stylesheet" href="{{URL::asset('css/jquery.dataTables.min.css')}}"> --}}
     <link rel="stylesheet" href="{{ URL::asset('css/dataTable.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ URL::asset('css/toastify.min.css') }}">
@@ -24,7 +24,6 @@
             position: fixed;
             top: 0;
             left: 250px;
-            /* right: 0  ;  */
             width: 100vw;
             height: 100vh;
             overflow-x: scroll;
@@ -40,8 +39,6 @@
         .wrapper::-webkit-scrollbar {
             width: 10px;
         }
-
-        .data-table {}
 
         .btn {
             padding: 4px;

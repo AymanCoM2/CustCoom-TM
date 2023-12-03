@@ -1,21 +1,16 @@
 <script>
-    // حالة طلب فتح الحساب
     var calcElement_1 = $('p[name="calc_g2_1"]');
     $(':input[name="OpenAccountPropose"]').on("myCustomEvent change", function() {
         if ($(this).is(':checked')) {
             var selectedValue = $(this).val();
-            // console.log("Radio button selected. Its value is: " + selectedValue);
             if (selectedValue == 'موجود' || selectedValue == 'مستثنى') {
                 calcElement_1.text('سارى');
             } else {
                 calcElement_1.text('يجب اعادة طلبه');
             }
-        } else {
-            // console.log("Radio button unchecked.");
-        }
+        } else {}
     });
 
-    // /////////////////////// 2 
     $(':input[name="CommercialRegister"]').on("myCustomEvent change", function() {
         if ($(this).is(':checked')) {
             var selectedValue = $(this).val();
@@ -36,7 +31,6 @@
         }
     });
 
-    // /////////////////////// 3 
     $(':input[name="TaxCard"]').on("myCustomEvent change", function() {
         if ($(this).is(':checked')) {
             var selectedValue = $(this).val();
@@ -46,9 +40,7 @@
             } else {
                 $('p[name="Rttv_dt_e"]').text('يجب اعادة طلبه');
             }
-        } else {
-            // console.log("Radio button unchecked.");
-        }
+        } else {}
     });
 
     $(':input[name="CRExpiryDate"]').on("myCustomEvent change", function() {
@@ -70,7 +62,6 @@
     function theMixFormulaG2_1() {
         let fixedPeriod = 1;
         let date_2_22 = $(':input[name="CRExpiryDate"]').val();
-        // console.log('Gorgy Now  : ', date_2_22);
         var check_2_1 = $('input[name="CommercialRegister"]:checked').val();
         var check_2_2 = $('input[name="CrCnMatch"]:checked').val();
         var todayExtraFixed = new Date();

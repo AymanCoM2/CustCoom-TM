@@ -11,12 +11,10 @@
             </ul>
         </div>
     @endif
-    {{-- $selectedOption --}}
 
     <div class="container">
         <form action="{{ route('col-ddl-post') }}" method="post">
             @csrf
-
             <div class="mb-3 row">
                 <div class="col-6">
                     <select name="theDDL" class="form-select" id="theDdlWheel">
@@ -31,7 +29,6 @@
                             </option>
                         @endforeach
                     </select>
-                    {{-- {{ $column->colName }} --}}
                 </div>
                 <div class="col-6">
                     <input type="text" class="form-control" name="theDDLOption">
@@ -44,7 +41,6 @@
         <div class="row mt-3">
             <div class="col-6">
                 <div class="container" id="cont">
-
                 </div>
             </div>
         </div>
@@ -157,8 +153,6 @@
                             background: "linear-gradient(to right, #00b09b, #96c93d)",
                         },
                     }).showToast();
-                    // location.reload();
-
                 },
                 error: function() {
                     console.log("Error Running the SQL query !!");

@@ -135,7 +135,6 @@
     </div>
     </div>
 
-
     @if (Auth::user()->isSuperUser == 1 || Auth::user()->isSuperUser == 2)
         <hr style="border-width:5px ">
         <div class="container conto">

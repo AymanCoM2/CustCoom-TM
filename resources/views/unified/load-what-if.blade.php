@@ -11,7 +11,6 @@
             }
         }).showToast();
         loadDataFromLink(userCardCode);
-
     });
 
     // 2 

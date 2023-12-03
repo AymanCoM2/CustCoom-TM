@@ -7,9 +7,7 @@
         var selectedValue = $(this).val();
         if (selectedValue == 'موجود') {
             markRequired();
-            $('p[name="mazbota"]').text(Number($(':input[name="ValueOrderException"]').val()) * 0.8);
-
-            // HERE 
+            $('p[name="mazbota"]').text(Number($(':input[name="ValueOrderException"]').val()) / 2);
             let creditSapValue = Number($('p[name="CreditLine_p"]').text());
             let mazValue = Number($('p[name="mazbota"]').text());
             if (Number(mazValue) == creditSapValue) {
@@ -21,11 +19,9 @@
             } else {
                 $('p[name="motabaqa"]').text('السند اصغر');
             }
-            // HERE 
         } else if (selectedValue == 'مستثنى') {
             markRequired();
             $('p[name="mazbota"]').text($(':input[name="ValueOrderException"]').val());
-            // HERE 
             let creditSapValue = Number($('p[name="CreditLine_p"]').text());
             let mazValue = Number($('p[name="mazbota"]').text());
             if (Number(mazValue) == creditSapValue) {
@@ -37,20 +33,19 @@
             } else {
                 $('p[name="motabaqa"]').text('السند اصغر');
             }
-            // HERE 
         } else {
             removeRequired();
             $('p[name="mazbota"]').text('0');
         }
         claculateHSL()
     });
-    // 
+
     $(':input[name="ValueOrderException"]').on("myCustomEvent input", function() {
         let mazValue = 0;
         let selectedValue = $(':input[name="OrderBond"]:checked').val();
         if (selectedValue == 'موجود') {
-            $('p[name="mazbota"]').text(Number($(':input[name="ValueOrderException"]').val()) * 0.8);
-            mazValue = Number(Number($(':input[name="ValueOrderException"]').val()) * 0.8);
+            $('p[name="mazbota"]').text(Number($(':input[name="ValueOrderException"]').val()) / 2);
+            mazValue = Number(Number($(':input[name="ValueOrderException"]').val()) / 2);
         } else if (selectedValue == 'مستثنى') {
             $('p[name="mazbota"]').text($(':input[name="ValueOrderException"]').val());
             mazValue = Number(Number($(':input[name="ValueOrderException"]').val()));
@@ -108,6 +103,7 @@
         $(':input[name="ValueOrderException"]').removeClass('border border-danger');
         $(':input[name="CreationDateOrderOrException"]').removeClass('border border-danger');
     }
+    // =============================================================
 
     function claculateHSL() {
         // ([[سند الامر]]=="موجود",
@@ -147,6 +143,5 @@
         } else {
             $('p[name="hsl"]').text("يجب اعادة طلبه");
         }
-
     } // End of CalcHSL() 
 </script>

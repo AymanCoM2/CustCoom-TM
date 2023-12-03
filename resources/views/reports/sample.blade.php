@@ -78,10 +78,3 @@
         </div>
     @endisset
 @endsection
-
-{{-- // "CRExpiryDate": "تاريخ انتهاء السجل التجارى",
-// "ValueOrderException": "قيمة سند الامر او الاستثناء",
-// "CreationDateOrderOrException": "تاريخ انشاء سند الامر او الاستثناء",
-// "OwnerIDExpiryDate": "تاريخ انتهاء هوية المالك",
-// "CustomerType":"نوع العميل", 
-// آجل , اجل مستثني  , نقدى --}}

@@ -23,9 +23,7 @@
                             <img data-pdf-thumbnail-file="{{ asset('storage/' . $document->path) }}"
                                 data-pdf-thumbnail-width="200">
                             <div class="card-header">
-                        
-         <p>{{ $document->path }}</p>
-
+                                <p>{{ $document->path }}</p>
                                 @if (Auth::user()->isSuperUser == 1)
                                     <div class="row">
                                         <a href="{{ route('restore-docu') }}" class="btn btn-success"
@@ -33,13 +31,11 @@
                                         document.getElementById('{{ $document->id }}').submit();">Restore</a>
                                     </div>
                                 @endif
-
                                 <form id="{{ $document->id }}" action="{{ route('restore-docu') }}" method="POST"
                                     class="d-none">
                                     <input type="hidden" name="docId" value="{{ $document->id }}">
                                     @csrf
                                 </form>
-
                             </div>
                         </div>
                     @else
@@ -73,14 +69,11 @@
     <hr style="border-width:5px ">
 
     <br>
-
     <br>
 
     <script src="{{ asset('js/pdfThumbnails.js') }}" data-pdfjs-src="{{ asset('js/pdf.js') }}"></script>
     <script src="{{ asset('js/bootstrap.bundle.js') }}"></script>
     <script src="{{ asset('js/code.jquery.com_jquery-3.7.0.js') }}"></script>
-
-    <script></script>
 </body>
 
 </html>

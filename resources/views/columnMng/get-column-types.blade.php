@@ -8,7 +8,6 @@
                 <div class="mb-3 row">
                     <div class="col-6">
                         {{ __($column->colName, [], 'ar') }}
-                        {{-- {{ $column->colName }} --}}
                     </div>
                     <div class="col-6">
                         <select class="form-select" aria-label="Default select example" name="{{ $column->colName }}">

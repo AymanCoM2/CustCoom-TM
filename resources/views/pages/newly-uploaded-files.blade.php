@@ -26,6 +26,5 @@
                 @endforeach
             </tbody>
         </table>
-        {{-- {{ $allHistory->links() }} --}}
     </div>
 @endsection
