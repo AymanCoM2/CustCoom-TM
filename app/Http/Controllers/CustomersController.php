@@ -187,7 +187,6 @@ class CustomersController extends Controller
         return view('pages.customer-form-view', compact(['customerSapData', 'customerMySqlData', 'cardCode']));
     }
 
-
     public function showCustomerDataFormG($cardCode)
     {
         $posY = 0;
@@ -202,7 +201,6 @@ class CustomersController extends Controller
         }
         return view('pages.customer-form-view-g', compact(['customerSapData', 'customerMySqlData', 'cardCode', 'posY']));
     }
-
 
     public function showCustomerDataFormGApproMode($cardCode)
     {
@@ -232,7 +230,6 @@ class CustomersController extends Controller
         }
         return view('pages.what-if-form', compact(['customerSapData', 'customerMySqlData', 'cardCode']));
     }
-
 
     public function showCustomerDataFrameDrive($cardCode)
     {
@@ -267,6 +264,10 @@ class CustomersController extends Controller
             $updatedCustomer->update($request->all()); // ^ This is the Update 
             $updatedCustomer->save();
             // Check Sanad and  Sejel 
+            // if ($request->CustomerType == "نقدى") {
+            //     $updatedCustomer->OrderBond = null;
+            //     $updatedCustomer->save();
+            // }
             if (!isset($request->CommercialRegister)) {
                 $updatedCustomer->CommercialRegister = null;
             }
@@ -287,7 +288,7 @@ class CustomersController extends Controller
             }
 
             // "OrderBond":"سند الامر",
-            if ($request->OrderBond == "غير موجود" ||  $request->OrderBond  == null) {
+            if ($request->OrderBond == "غير موجود" ||  $request->OrderBond  == null || $updatedCustomer->CustomerType == "نقدى") {
                 $updatedCustomer->ValueOrderException = null;
                 $updatedCustomer->CreationDateOrderOrException = null;
                 $updatedCustomer->ObCrMatch = null;

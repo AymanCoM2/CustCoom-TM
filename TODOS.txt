@@ -1,0 +1,12 @@
+CUSTcoom:
+    - نقدي واجل في CustCoom  -> Customer C0797 
+    - Notes For Disapproved Fields
+Odoo Reset Button
+
+==================
+Loaders : 
+    - Approve All Button  ; 
+    - For the PreInit Of the Datatable  ; 
+    - 
+[ Adding Note For the Editor For the Disapproved Fields ]
++ Modal For the Message ; 
