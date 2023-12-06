@@ -309,7 +309,7 @@ class CustomersController extends Controller
             $oldModelObject  = Customers::where('id', $request->id)->first(); // To compare each field 
             $filtered = array_filter($request->all());
             foreach ($oldModelObject->toArray() as $key => $value) {
-                if (isset($filtered[$key])) {
+                if (isset($filtered[$key]) && $key != 'id') {
                     if ($oldModelObject[$key] === $filtered[$key]) {
                     } else {
                         $editHistory  = EditHistory::where('cardCode', $oldModelObject['CardCode'])
