@@ -8,6 +8,8 @@ return new class extends Migration
 {
     public function up(): void
     {
+        // php artisan make:migration add_column_to_editor_once_time_n_otifications --table=editor_once_time_n_otifications
+
         // ! We Need "Mark as Read" Button to Delete the Old Ones ;  
         Schema::create('editor_once_time_n_otifications', function (Blueprint $table) {
             $table->id();

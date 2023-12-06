@@ -24,7 +24,7 @@ Route::get('/customer-edit-log', function () {
 
 
 Route::get('/editor-approval-history', function (Request $request) {
-    $allHistory = TempDisapprove::where('editor_id', request()->user()->id)->orderBy('updated_at', 'desc')->paginate(12);
+    $allHistory = EditGrave::where('editor_id', request()->user()->id)->orderBy('updated_at', 'desc')->paginate(12);
     return view('pages.history-log', compact(['allHistory']));
 })->name('editor-approval-history');
 

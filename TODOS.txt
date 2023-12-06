@@ -2,7 +2,6 @@ CUSTcoom:
     - نقدي واجل في CustCoom  -> Customer C0797 
     - Notes For Disapproved Fields
 Odoo Reset Button
-
 ==================
 Loaders : 
     - Approve All Button  ; 
@@ -10,3 +9,10 @@ Loaders :
     - 
 [ Adding Note For the Editor For the Disapproved Fields ]
 + Modal For the Message ; 
+
+Approve Mode:Make Sure Everything is For Only the Admin,Not Editors; 
+==================
+Problems : 
+    - Disapprove Msg Get the Same ID every time  ; 
+    - id get into the edit history for some reason ;
+    
