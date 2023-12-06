@@ -273,58 +273,6 @@
                         hijriDateObject.value = ""; // Reset the value if the date is cleared
                     }
                 });
-
-                gregoryDateObject.addEventListener("myCustomEvent", function() {
-                    const selectedDate = gregoryDateObject.value;
-                    if (selectedDate) {
-                        // console.log(selectedDate);
-                        const dateParts = selectedDate.split("-");
-                        const year = dateParts[0];
-                        const month = dateParts[1];
-                        const day = dateParts[2];
-                        const forma = `${day}-${month}-${year}`;
-                        // console.log(forma);
-                        const apiEndpoint = `http://api.aladhan.com/v1/gToH/${forma}`;
-                        // Make an API call using AJAX
-                        fetch(apiEndpoint)
-                            .then(response => response.json())
-                            .then(data => {
-                                const convertedDate = data.data.hijri.date;
-                                hijriDateObject.value = convertedDate;
-                            })
-                            .catch(error => {
-                                console.error("Error fetching API data:", error);
-                            });
-                    } else {
-                        hijriDateObject.value = ""; // Reset the value if the date is cleared
-                    }
-                });
-
-                hijriDateObject.addEventListener("myCustomEvent", function() {
-                    const selectedDate = hijriDateObject.value;
-                    if (selectedDate) {
-                        // console.log(selectedDate);
-                        const apiEndpoint = `http://api.aladhan.com/v1/hToG/${selectedDate}`;
-                        // Make an API call using AJAX
-                        fetch(apiEndpoint)
-                            .then(response => response.json())
-                            .then(data => {
-                                const convertedDate = data.data.gregorian.date;
-                                const dateParts = convertedDate.split("-");
-                                const year = dateParts[0];
-                                const month = dateParts[1];
-                                const day = dateParts[2];
-                                const forma = `${day}-${month}-${year}`;
-                                // console.log(forma);
-                                gregoryDateObject.value = forma;
-                            })
-                            .catch(error => {
-                                console.error("Error fetching API data:", error);
-                            });
-                    } else {
-                        hijriDateObject.value = ""; // Reset the value if the date is cleared
-                    }
-                });
             }
             const CRExpiryDateInput = document.getElementsByName("CRExpiryDate")[0];
             const CRExpiryDate_hInput = document.getElementsByName("CRExpiryDate_h")[0];
@@ -362,7 +310,7 @@
     </script>
 
     @include('unified.uno')
-    {{-- @include('unified.HijriLoad') --}}
+    @include('unified.HijriLoad')
     @if (Auth::user()->isSuperUser == 3)
         @include('unified.viewer-js')
     @endif

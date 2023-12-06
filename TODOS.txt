@@ -1,18 +1,19 @@
-CUSTcoom:
-    - نقدي واجل في CustCoom  -> Customer C0797 
-    - Notes For Disapproved Fields
-Odoo Reset Button
 ==================
 Loaders : 
     - Approve All Button  ; 
     - For the PreInit Of the Datatable  ; 
-    - 
-[ Adding Note For the Editor For the Disapproved Fields ]
-+ Modal For the Message ; 
-
-Approve Mode:Make Sure Everything is For Only the Admin,Not Editors; 
 ==================
 Problems : 
-    - Disapprove Msg Get the Same ID every time  ; 
     - id get into the edit history for some reason ;
-    
+    - The Hijri Date -> 1389 ?
+    - 22-10-1389
+- Whe Editor Makes Edit and Submit : 
+    -> Now Edit History is Stored Including ID ? 
+
+Excel Backup/Export excel Mysql + sap + Calculated in Sheets/DB backups 
+Google Drive Links For Customers
+=======================
+Related Data ? What about them ? NAQDI 
+=======================
+php artisan make:migration add_column_to_editor_once_time_n_otifications --table=editor_once_time_n_otifications
+=======================
