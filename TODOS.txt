@@ -1,15 +1,7 @@
-==================
 Loaders : 
     - Approve All Button  ; 
     - For the PreInit Of the Datatable  ; 
 ==================
-Problems : 
-    - id get into the edit history for some reason ;
-    - The Hijri Date -> 1389 ?
-    - 22-10-1389
-- Whe Editor Makes Edit and Submit : 
-    -> Now Edit History is Stored Including ID ? 
-
 Excel Backup/Export excel Mysql + sap + Calculated in Sheets/DB backups 
 Google Drive Links For Customers
 =======================
