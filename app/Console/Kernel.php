@@ -14,7 +14,7 @@ class Kernel extends ConsoleKernel
     {
         // Africa/Cairo << Time Zone 
         // $schedule->command('inspire')->hourly();
-        $schedule->command('app:do-backup')->sundays()->at('11:15');
+        $schedule->command('app:do-backup')->sundays()->at('10:22');
     }
 
     /**
