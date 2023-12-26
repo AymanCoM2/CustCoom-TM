@@ -44,8 +44,8 @@
         let mazValue = 0;
         let selectedValue = $(':input[name="OrderBond"]:checked').val();
         if (selectedValue == 'موجود') {
-            $('p[name="mazbota"]').text(Number($(':input[name="ValueOrderException"]').val()) / 2);
-            mazValue = Number(Number($(':input[name="ValueOrderException"]').val()) / 2);
+            $('p[name="mazbota"]').text(Number($(':input[name="ValueOrderException"]').val()) * 0.8);
+            mazValue = Number(Number($(':input[name="ValueOrderException"]').val()) * 0.8);
         } else if (selectedValue == 'مستثنى') {
             $('p[name="mazbota"]').text($(':input[name="ValueOrderException"]').val());
             mazValue = Number(Number($(':input[name="ValueOrderException"]').val()));
